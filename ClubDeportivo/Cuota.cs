@@ -31,7 +31,7 @@ namespace ClubDeportivo
         public int CuotasTarjeta { get => cuotasTarjeta; set => cuotasTarjeta = value; }
 
         public bool RegistrarCuota() { return true; }
-        public bool actualizarCuota() { return true; }
-        public DateTime calcularVencimiento() { return FechaVencimiento; }
+        public bool ActualizarCuota() { return true; }
+        public DateTime CalcularVencimiento() { return FechaVencimiento; }
     }
 }
