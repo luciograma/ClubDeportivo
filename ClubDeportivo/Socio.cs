@@ -7,7 +7,7 @@ using System.Transactions;
 
 namespace ClubDeportivo
 {
-    public class Socio : Persona
+    public class Socio : Cliente
     {
         private long nroSocio;
         private DateTime fechaEmisionCarnet;
@@ -39,7 +39,7 @@ namespace ClubDeportivo
             return true; 
         }
 
-        public override void RegistrarPersona(){
+        public override void RegistrarCliente(){
             this.AltaSocio();
         }
 

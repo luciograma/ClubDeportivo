@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClubDeportivo
 {
-    public abstract class Persona
+    public abstract class Cliente
     {
         private string nombre;
         private string apellido;
@@ -15,9 +15,9 @@ namespace ClubDeportivo
         private string email;
         private string telefono;
 
-        public Persona() { }
+        public Cliente() { }
 
-        public Persona(string nombre, string apellido, long dni, string direccion, string email, string telefono)
+        public Cliente(string nombre, string apellido, long dni, string direccion, string email, string telefono)
         {
             this.Nombre = nombre;
             this.Apellido = apellido;
@@ -34,7 +34,7 @@ namespace ClubDeportivo
         public string Email { get => email; set => email = value; }
         public string Telefono { get => telefono; set => telefono = value; }
 
-        public abstract void RegistrarPersona();
+        public abstract void RegistrarCliente();
 
     }
 }
