@@ -14,7 +14,7 @@ namespace ClubDeportivo
 
         public Socio() { }
 
-        public Socio(string nombre, string apellido, long dni, string direccion, string email, string telefono, long nroSocio, DateTime fechaEmisionCarnet) : base(nombre, apellido, dni, direccion, email, telefono)
+        public Socio(long id, string nombre, string apellido, long dni, string direccion, string email, string telefono, long nroSocio, DateTime fechaEmisionCarnet) : base(id, nombre, apellido, dni, direccion, email, telefono)
         {
             this.NroSocio = nroSocio;
             this.FechaEmisionCarnet = fechaEmisionCarnet;

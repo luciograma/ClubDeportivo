@@ -1,4 +1,9 @@
-﻿namespace ClubDeportivo
+﻿using ClubDeportivo.Datos;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Data;
+
+namespace ClubDeportivo
 {
     partial class formLogin
     {
@@ -105,5 +110,22 @@
         private TextBox textPassword;
         private Button btnIngresar;
         private PictureBox imagenLogin;
+         
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+            DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario
+            Datos.Usuario dato = new Datos.Usuario(); // variable que contiene todas las caracteristicas de la clase
+            tablaLogin = dato.Log_Usuario(textUsuario.Text, textPassword.Text);
+            if (tablaLogin.Rows.Count > 0)
+            {
+                // quiere decir que el resultado tiene 1 fila por lo que el usuario EXISTE
+                MessageBox.Show("Ingreso exitoso");
+            }
+            else
+            {
+                MessageBox.Show("Usuario y/o password incorrecto");
+            }
+        }
+
     }
 }

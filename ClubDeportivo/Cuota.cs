@@ -8,6 +8,7 @@ namespace ClubDeportivo
 {
     public class Cuota
     {
+        private long id;
         private Socio socio;
         private DateTime fechaVencimiento;
         private double monto;
@@ -15,15 +16,16 @@ namespace ClubDeportivo
         private int cuotasTarjeta;
 
         public Cuota() { }
-        public Cuota(Socio socio, DateTime fechaVencimiento, double monto, string medioPago, int cuotasTarjeta)
+        public Cuota(long id,  Socio socio, DateTime fechaVencimiento, double monto, string medioPago, int cuotasTarjeta)
         {
+            this.Id = id;
             this.Socio = socio;
             this.FechaVencimiento = fechaVencimiento;
             this.Monto = monto;
             this.MedioPago = medioPago;
             this.CuotasTarjeta = cuotasTarjeta;
         }
-
+        public long Id { get => id; set => id = value; }
         public Socio Socio { get => socio; set => socio = value; }
         public DateTime FechaVencimiento { get => fechaVencimiento; set => fechaVencimiento = value; }
         public double Monto { get => monto; set => monto = value; }

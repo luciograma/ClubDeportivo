@@ -8,6 +8,7 @@ namespace ClubDeportivo
 {
     public abstract class Cliente
     {
+        private long id;
         private string nombre;
         private string apellido;
         private long dni;
@@ -17,8 +18,9 @@ namespace ClubDeportivo
 
         public Cliente() { }
 
-        public Cliente(string nombre, string apellido, long dni, string direccion, string email, string telefono)
+        public Cliente(long id, string nombre, string apellido, long dni, string direccion, string email, string telefono)
         {
+            this.Id = id;
             this.Nombre = nombre;
             this.Apellido = apellido;
             this.Dni = dni;
@@ -27,6 +29,7 @@ namespace ClubDeportivo
             this.Telefono = telefono;
         }
 
+        public long Id { get => id; set => id = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
         public long Dni { get => dni; set => dni = value; }
