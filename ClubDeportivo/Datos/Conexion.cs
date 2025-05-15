@@ -24,7 +24,7 @@ namespace ClubDeportivo.Datos
             this.clave = "";
         }
 
-        public MySqlConnection CrearConcexion()
+        public MySqlConnection CrearConexion()
         {
             // instanciamos una conexion
             MySqlConnection? cadena = new MySqlConnection();

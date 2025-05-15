@@ -20,7 +20,7 @@ namespace ClubDeportivo.Datos
             MySqlConnection sqlCon = new MySqlConnection();
             try
             {
-                sqlCon = Conexion.getInstancia().CrearConcexion();
+                sqlCon = Conexion.getInstancia().CrearConexion();
 
                 // el comando es un elemento que almacena en este caso el nombre
                 // del procedimiento almacenado y la referencia a la conexion
@@ -28,8 +28,8 @@ namespace ClubDeportivo.Datos
                 comando.CommandType = CommandType.StoredProcedure;
                 
                 // definimos los parametros que tiene el procedure
-                comando.Parameters.Add("Userame", MySqlDbType.VarChar).Value = username;
-                comando.Parameters.Add("Password", MySqlDbType.VarChar).Value =  password;
+                comando.Parameters.Add("Usu", MySqlDbType.VarChar).Value = username;
+                comando.Parameters.Add("Pass", MySqlDbType.VarChar).Value =  password;
                 
                 // abrimos la conexion
                 sqlCon.Open();
