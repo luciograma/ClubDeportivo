@@ -15,19 +15,25 @@ namespace ClubDeportivo
         public frmPrincipal()
         {
             InitializeComponent();
-            btnRegistrarCliente.MouseEnter += Boton_MouseEnter;
-            btnListarVencimientos.MouseEnter += Boton_MouseEnter;
-            btnExit.MouseEnter += Boton_MouseEnter;
-            btnInscribirActividad.MouseEnter += Boton_MouseEnter;
-            btnPagarCuota.MouseEnter += Boton_MouseEnter;
+            RegistrarBoton(btnRegistrarCliente);
+            RegistrarBoton(btnListarVencimientos);
+            RegistrarBoton(btnExit);
+            RegistrarBoton(btnInscribirActividad);
+            RegistrarBoton(btnPagarCuota);
         }
 
         internal string? rol;
         internal string? usuario;
+        Dictionary<Button, Color> coloresOriginales = new Dictionary<Button, Color>();
 
         private void frmPrincipal_Load(object sender, EventArgs e)
+        {}
+
+        private void RegistrarBoton(Button boton)
         {
-            lblIngreso.Text = "USUARIO: " + usuario;
+            coloresOriginales[boton] = boton.BackColor;
+            boton.MouseEnter += Boton_MouseEnter;
+            boton.MouseLeave += Boton_MouseLeave;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -62,8 +68,23 @@ namespace ClubDeportivo
             Button btn = sender as Button;
             if (btn != null)
             {
+                btn.BackColor = Color.LightGray; // o cualquier color que prefieras
                 btn.Focus();
             }
+        }
+
+        private void Boton_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null && coloresOriginales.ContainsKey(btn))
+            {
+                btn.BackColor = coloresOriginales[btn];
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

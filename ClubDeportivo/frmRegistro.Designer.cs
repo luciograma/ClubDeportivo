@@ -65,14 +65,14 @@
             txtDNI.Location = new Point(428, 282);
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new Size(105, 27);
-            txtDNI.TabIndex = 2;
+            txtDNI.TabIndex = 3;
             // 
             // txtEmail
             // 
             txtEmail.Location = new Point(428, 224);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(271, 27);
-            txtEmail.TabIndex = 3;
+            txtEmail.TabIndex = 2;
             // 
             // btnRegistrar
             // 
@@ -82,7 +82,7 @@
             btnRegistrar.Location = new Point(343, 370);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(172, 43);
-            btnRegistrar.TabIndex = 4;
+            btnRegistrar.TabIndex = 5;
             btnRegistrar.Text = "REGISTRAR";
             btnRegistrar.UseVisualStyleBackColor = false;
             btnRegistrar.Click += btnRegistrar_Click;
@@ -96,7 +96,7 @@
             tltRegistro.Location = new Point(364, 41);
             tltRegistro.Name = "tltRegistro";
             tltRegistro.Size = new Size(335, 41);
-            tltRegistro.TabIndex = 5;
+            tltRegistro.TabIndex = 7;
             tltRegistro.Text = "REGISTRO DE CLIENTE";
             tltRegistro.Click += label1_Click;
             // 
@@ -118,7 +118,7 @@
             btnVolver.Location = new Point(568, 370);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(172, 43);
-            btnVolver.TabIndex = 7;
+            btnVolver.TabIndex = 6;
             btnVolver.TabStop = false;
             btnVolver.Text = "VOLVER";
             btnVolver.UseCompatibleTextRendering = true;
@@ -158,7 +158,7 @@
             lblDNI.Location = new Point(364, 285);
             lblDNI.Name = "lblDNI";
             lblDNI.Size = new Size(48, 20);
-            lblDNI.TabIndex = 10;
+            lblDNI.TabIndex = 11;
             lblDNI.Text = "D.N.I.";
             lblDNI.Click += label1_Click_1;
             // 
@@ -171,7 +171,7 @@
             lblEmail.Location = new Point(347, 231);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(53, 20);
-            lblEmail.TabIndex = 11;
+            lblEmail.TabIndex = 10;
             lblEmail.Text = "E-mail";
             lblEmail.Click += label2_Click;
             // 
@@ -193,7 +193,7 @@
             checkSocio.Location = new Point(617, 285);
             checkSocio.Name = "checkSocio";
             checkSocio.Size = new Size(68, 24);
-            checkSocio.TabIndex = 13;
+            checkSocio.TabIndex = 4;
             checkSocio.Text = "Socio";
             checkSocio.UseVisualStyleBackColor = true;
             checkSocio.CheckedChanged += checkBox1_CheckedChanged;

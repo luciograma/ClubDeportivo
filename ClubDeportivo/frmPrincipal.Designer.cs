@@ -28,104 +28,141 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnRegistrarCliente = new System.Windows.Forms.Button();
-            this.btnInscribirActividad = new System.Windows.Forms.Button();
-            this.btnPagarCuota = new System.Windows.Forms.Button();
-            this.btnListarVencimientos = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.lblIngreso = new System.Windows.Forms.Label();
-            this.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
+            btnRegistrarCliente = new Button();
+            btnInscribirActividad = new Button();
+            btnPagarCuota = new Button();
+            btnListarVencimientos = new Button();
+            btnExit = new Button();
+            lblIngreso = new Label();
+            lblTitulo = new Label();
+            pictureBox1 = new PictureBox();
+            lblSubtitulo = new Label();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // btnRegistrarCliente
             // 
-            this.btnRegistrarCliente.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnRegistrarCliente.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnRegistrarCliente.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnRegistrarCliente.Location = new System.Drawing.Point(94, 116);
-            this.btnRegistrarCliente.Name = "btnRegistrarCliente";
-            this.btnRegistrarCliente.Size = new System.Drawing.Size(232, 79);
-            this.btnRegistrarCliente.TabIndex = 0;
-            this.btnRegistrarCliente.Text = "Registrar Cliente";
-            this.btnRegistrarCliente.UseVisualStyleBackColor = false;
-            this.btnRegistrarCliente.Click += new System.EventHandler(this.btnRegistrarCliente_Click);
+            btnRegistrarCliente.BackColor = Color.MediumSlateBlue;
+            btnRegistrarCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnRegistrarCliente.ForeColor = SystemColors.ButtonFace;
+            btnRegistrarCliente.Location = new Point(50, 83);
+            btnRegistrarCliente.Name = "btnRegistrarCliente";
+            btnRegistrarCliente.Size = new Size(232, 79);
+            btnRegistrarCliente.TabIndex = 0;
+            btnRegistrarCliente.Text = "Registrar Cliente";
+            btnRegistrarCliente.UseVisualStyleBackColor = false;
+            btnRegistrarCliente.Click += btnRegistrarCliente_Click;
             // 
             // btnInscribirActividad
             // 
-            this.btnInscribirActividad.BackColor = System.Drawing.Color.Silver;
-            this.btnInscribirActividad.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnInscribirActividad.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnInscribirActividad.Location = new System.Drawing.Point(428, 116);
-            this.btnInscribirActividad.Name = "btnInscribirActividad";
-            this.btnInscribirActividad.Size = new System.Drawing.Size(232, 79);
-            this.btnInscribirActividad.TabIndex = 1;
-            this.btnInscribirActividad.Text = "Inscribir Actividad";
-            this.btnInscribirActividad.UseVisualStyleBackColor = false;
-            this.btnInscribirActividad.Enabled = false;
+            btnInscribirActividad.BackColor = Color.Silver;
+            btnInscribirActividad.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnInscribirActividad.ForeColor = SystemColors.ButtonFace;
+            btnInscribirActividad.Location = new Point(50, 423);
+            btnInscribirActividad.Name = "btnInscribirActividad";
+            btnInscribirActividad.Size = new Size(232, 79);
+            btnInscribirActividad.TabIndex = 1;
+            btnInscribirActividad.Text = "Inscribir Actividad";
+            btnInscribirActividad.UseVisualStyleBackColor = false;
             // 
             // btnPagarCuota
             // 
-            this.btnPagarCuota.BackColor = System.Drawing.Color.Silver;
-            this.btnPagarCuota.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnPagarCuota.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPagarCuota.Location = new System.Drawing.Point(94, 272);
-            this.btnPagarCuota.Name = "btnPagarCuota";
-            this.btnPagarCuota.Size = new System.Drawing.Size(232, 79);
-            this.btnPagarCuota.TabIndex = 2;
-            this.btnPagarCuota.Text = "Pagar Cuota";
-            this.btnPagarCuota.UseVisualStyleBackColor = false;
-            this.btnPagarCuota.Enabled = false;
+            btnPagarCuota.BackColor = Color.Silver;
+            btnPagarCuota.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnPagarCuota.ForeColor = SystemColors.ButtonFace;
+            btnPagarCuota.Location = new Point(50, 194);
+            btnPagarCuota.Name = "btnPagarCuota";
+            btnPagarCuota.Size = new Size(232, 79);
+            btnPagarCuota.TabIndex = 2;
+            btnPagarCuota.Text = "Pagar Cuota";
+            btnPagarCuota.UseVisualStyleBackColor = false;
             // 
             // btnListarVencimientos
             // 
-            this.btnListarVencimientos.BackColor = System.Drawing.Color.SlateBlue;
-            this.btnListarVencimientos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnListarVencimientos.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnListarVencimientos.Location = new System.Drawing.Point(428, 272);
-            this.btnListarVencimientos.Name = "btnListarVencimientos";
-            this.btnListarVencimientos.Size = new System.Drawing.Size(232, 79);
-            this.btnListarVencimientos.TabIndex = 3;
-            this.btnListarVencimientos.Text = "Listar Vencimientos";
-            this.btnListarVencimientos.UseVisualStyleBackColor = false;
-            this.btnListarVencimientos.Enabled = false;
+            btnListarVencimientos.BackColor = Color.SlateBlue;
+            btnListarVencimientos.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            btnListarVencimientos.ForeColor = SystemColors.ButtonFace;
+            btnListarVencimientos.Location = new Point(50, 309);
+            btnListarVencimientos.Name = "btnListarVencimientos";
+            btnListarVencimientos.Size = new Size(232, 79);
+            btnListarVencimientos.TabIndex = 3;
+            btnListarVencimientos.Text = "Listar Vencimientos";
+            btnListarVencimientos.UseVisualStyleBackColor = false;
             // 
             // btnExit
             // 
-            this.btnExit.BackColor = System.Drawing.Color.IndianRed;
-            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnExit.Location = new System.Drawing.Point(672, 24);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(107, 31);
-            this.btnExit.TabIndex = 4;
-            this.btnExit.Text = "Salir";
-            this.btnExit.UseVisualStyleBackColor = false;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            btnExit.BackColor = Color.IndianRed;
+            btnExit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnExit.ForeColor = SystemColors.ButtonFace;
+            btnExit.Location = new Point(806, 471);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(107, 31);
+            btnExit.TabIndex = 4;
+            btnExit.Text = "Salir";
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
             // lblIngreso
             // 
-            this.lblIngreso.AutoSize = true;
-            this.lblIngreso.Location = new System.Drawing.Point(94, 24);
-            this.lblIngreso.Name = "lblIngreso";
-            this.lblIngreso.Size = new System.Drawing.Size(0, 20);
-            this.lblIngreso.TabIndex = 5;
+            lblIngreso.AutoSize = true;
+            lblIngreso.Location = new Point(94, 24);
+            lblIngreso.Name = "lblIngreso";
+            lblIngreso.Size = new Size(0, 20);
+            lblIngreso.TabIndex = 5;
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.SlateBlue;
+            lblTitulo.Location = new Point(466, 48);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(269, 41);
+            lblTitulo.TabIndex = 6;
+            lblTitulo.Text = "CLUB DEPORTIVO";
+            lblTitulo.Click += label1_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(444, 184);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(328, 267);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
+            // 
+            // lblSubtitulo
+            // 
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Location = new Point(520, 99);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(157, 20);
+            lblSubtitulo.TabIndex = 8;
+            lblSubtitulo.Text = "Gestión administrativa";
             // 
             // frmPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblIngreso);
-            this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.btnListarVencimientos);
-            this.Controls.Add(this.btnPagarCuota);
-            this.Controls.Add(this.btnInscribirActividad);
-            this.Controls.Add(this.btnRegistrarCliente);
-            this.Name = "frmPrincipal";
-            this.Text = "Ventana Principal";
-            this.Load += new System.EventHandler(this.frmPrincipal_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(945, 547);
+            Controls.Add(lblSubtitulo);
+            Controls.Add(pictureBox1);
+            Controls.Add(lblTitulo);
+            Controls.Add(lblIngreso);
+            Controls.Add(btnExit);
+            Controls.Add(btnListarVencimientos);
+            Controls.Add(btnPagarCuota);
+            Controls.Add(btnInscribirActividad);
+            Controls.Add(btnRegistrarCliente);
+            Name = "frmPrincipal";
+            Text = "Ventana Principal";
+            Load += frmPrincipal_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -136,5 +173,8 @@
         private System.Windows.Forms.Button btnListarVencimientos;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label lblIngreso;
+        private Label lblTitulo;
+        private PictureBox pictureBox1;
+        private Label lblSubtitulo;
     }
 }

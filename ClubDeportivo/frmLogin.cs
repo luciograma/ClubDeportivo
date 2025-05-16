@@ -21,8 +21,11 @@ namespace ClubDeportivo
             btnIngresar.MouseEnter += Boton_MouseEnter;
         }
 
+        Color originalColor;
+
         private void formLogin_Load(object sender, EventArgs e)
         {
+            originalColor = btnIngresar.BackColor;
         }
 
         private void txtUsuario_Enter(object sender, EventArgs e)
@@ -112,6 +115,16 @@ namespace ClubDeportivo
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnIngresar_MouseEnter(object sender, EventArgs e)
+        {
+            btnIngresar.BackColor = Color.LightGray;
+        }
+
+        private void btnIngresar_MouseLeave(object sender, EventArgs e)
+        {
+            btnIngresar.BackColor = originalColor;
         }
     }
 }
