@@ -105,6 +105,9 @@ namespace ClubDeportivo
                         "AVISO DEL SISTEMA",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                        frmPrincipal principal = new frmPrincipal();
+                        principal.Show();
+                        this.Hide();
                     }
                 }
                 else
