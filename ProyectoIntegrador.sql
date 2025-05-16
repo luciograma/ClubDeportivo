@@ -2,130 +2,139 @@ DROP DATABASE IF EXISTS Proyecto;
 CREATE DATABASE Proyecto;
 USE Proyecto;
 
--- CREATE TABLE Roles(
--- RolUsuario int primary key,
--- NombreRol varchar(30)
--- );
-
--- INSERT INTO Roles(RolUsuario,NombreRol) VALUES 
--- (1,"ADMINISTRADOR"),
--- (3,"CLIENTE"),
--- (2,"SOCIO");
-
-CREATE TABLE usuarios(
-CodUsuario int auto_increment PRIMARY KEY,
-NombreUsuario varchar (20),
-PasswordUsuario varchar (15)
--- RolUsuario int,
--- Activo boolean default true,
-constraint -- fk_usuario foreign key(RolUsuario) references roles(RolUsuario)
-);
-
--- CREATE TABLE clientes(
--- idCliente int auto_increment PRIMARY KEY,
--- nombre varchar (20),
--- apellido varchar (20),
--- dni int,
--- aptoFisico bool,
--- esSocio bool
--- );
-
-CREATE TABLE cliente(
-idCliente int auto_increment PRIMARY KEY
--- esSocio bool
+CREATE TABLE usuario(
+idUsuario int auto_increment PRIMARY KEY,
+nombreUsuario varchar (20),
+passwordUsuario varchar (15)
 );
 
 CREATE TABLE socio(
-idSocio int auto_increment PRIMARY KEY,
-nombre varchar (20),
-apellido varchar (20),
-dni int,
-direccion varchar(30),
-email varchar(40),
-telefono varchar(30),
-fechaEmisionCarnet datetime
+	idSocio int auto_increment PRIMARY KEY,
+	nombre varchar (20),
+	apellido varchar (20),
+	dni int,
+	email varchar(40),
+	fechaEmisionCarnet datetime
 );
 
 CREATE TABLE noSocio(
-idNoSocio int auto_increment PRIMARY KEY,
-nombre varchar (20),
-apellido varchar (20),
-dni int,
-direccion varchar(30),
-email varchar(40),
-telefono varchar(30)
+	idNoSocio int auto_increment PRIMARY KEY,
+	nombre varchar (20),
+	apellido varchar (20),
+	dni int,
+	email varchar(40)
 );
 
-
-CREATE TABLE actividades(
-	codActividad int auto_increment PRIMARY KEY,
+CREATE TABLE actividad(
+	idActividad int auto_increment PRIMARY KEY,
     nombre varchar(30),
     precio float,
     horario datetime,
-    cupo int,
-    cupoDisponible int
+    cupo int
 );
 
-CREATE TABLE cliente_actividad(
-	idCliente int,
-    codActividad int,
-    PRIMARY KEY(idCliente, codActividad),
-    FOREIGN KEY (idCliente) REFERENCES clientes(idCliente),
-    FOREIGN KEY (codActividad) REFERENCES actividades(codActividad)
+CREATE TABLE noSocio_actividad(
+	idNoSocio int,
+    idActividad int,
+    PRIMARY KEY(idNoSocio, idActividad),
+    FOREIGN KEY (idNoSocio) REFERENCES noSocio(idNoSocio),
+    FOREIGN KEY (idActividad) REFERENCES actividad(idActividad)
 );
 
-CREATE TABLE cuotas(
-	idCuota int auto_increment primary key,
-    fechaUltimoPago date,
-    valorCuota float,
-    formaPago varchar(30),
-    fechaVencimiento date,
-    idCliente int,
-    FOREIGN KEY (idCliente) REFERENCES clientes(idCliente)
+CREATE TABLE cuota (
+    idCuota INT AUTO_INCREMENT PRIMARY KEY,
+    valorCuota FLOAT NOT NULL,
+    formaPago VARCHAR(30) NOT NULL,
+    fechaVencimiento DATE NOT NULL,
+    cuotasTarjeta INT DEFAULT 0,
+    idSocio INT NOT NULL,
+    FOREIGN KEY (idSocio) REFERENCES socio(idSocio)
 );
-INSERT INTO usuarios (NombreUsuario,PasswordUsuario,RolUsuario) values 
-("admin","admin",1);
 
 
-delimiter //  
-create procedure IngresoLogin(in Usu varchar(20),in Pass varchar(15))
-
-/* =============================================================================
-Se colocan dos parametros de entrada por eso son in
-uno para el nombre de usuario y el otro para la contraseña
-observar que la longitud debe ser igual que la longitud del atributo de la tabla
-===================================================================================  */
-begin
-  /* proyecto en la consulta el rol que tiene el usuario que ingresa */
-  
-  select NombreRol
-	from usuarios u inner join roles r on u.RolUsuario = r.RolUsuario
-		where NombreUsuario = Usu and PasswordUsuario = Pass /* se compara con los parametros */
-			and Activo = 1; /* el usuario debe estar activo */
+INSERT INTO usuario (NombreUsuario,PasswordUsuario) values 
+("admin","admin");
 
 
-end 
+delimiter //
+CREATE PROCEDURE IngresoLogin(
+    IN Usu VARCHAR(20),
+    IN Pass VARCHAR(15)
+)
+BEGIN
+    SELECT 1 AS LoginValido
+    FROM usuario u
+    WHERE u.nombreUsuario = Usu
+      AND u.passwordUsuario = Pass
+    LIMIT 1;
+END
 //
-
-create procedure NuevoCliente(in Nom varchar(20),in Ape varchar(20),in clientDni int, in aptoFisico bool, esSocio bool, out rta int)
- begin
-	 declare existe int default 0;
-    
-     
-		/* ---------------------------------------------------------
-			para saber si ya esta almacenado el postulante
-		------------------------------------------------------- */	
-		set existe = (select idCliente from clientes where dni = clientDni );
-	 
-	  if existe is null then	 
-		 insert into clientes(nombre,apellido,dni,aptoFisico,esSocio) values(Nom,Ape,clientDni,aptoFisico,esSocio);
-		 set rta  =  (SELECT LAST_INSERT_ID());
-	  else
-		 set rta = -1;
-      end if;		 
-    
-     end //
-
-
-
 delimiter ;
+
+DELIMITER //
+CREATE PROCEDURE AltaSocio(
+    IN nombre VARCHAR(20),
+    IN apellido VARCHAR(20),
+    IN dni INT,
+    IN email VARCHAR(100),
+    OUT rta INT
+)
+BEGIN
+    DECLARE existe INT;
+
+    SELECT COUNT(*) INTO existe FROM socio WHERE socio.dni = dni;
+
+    IF existe = 0 THEN
+        INSERT INTO socio (nombre, apellido, dni, email, fechaEmisionCarnet)
+        VALUES (nombre, apellido, dni, email, NOW());
+        SET rta = LAST_INSERT_ID();
+    ELSE
+        SET rta = -1;
+    END IF;
+END //
+DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE AltaNoSocio(
+    IN nombre VARCHAR(20),
+    IN apellido VARCHAR(20),
+    IN dni INT,
+    IN email VARCHAR(100),
+    OUT rta INT
+)
+BEGIN
+    DECLARE existe INT;
+
+    SELECT COUNT(*) INTO existe FROM noSocio WHERE noSocio.dni = dni;
+
+    IF existe = 0 THEN
+        INSERT INTO noSocio (nombre, apellido, dni, email)
+        VALUES (nombre, apellido, dni, email);
+        SET rta = LAST_INSERT_ID();
+    ELSE
+        SET rta = -1;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE RegistrarCuota(
+    IN idSocio INT,
+    IN fechaVencimiento DATE,
+    IN monto DOUBLE,
+    IN medioPago VARCHAR(30),
+    IN cuotasTarjeta INT
+)
+BEGIN
+    INSERT INTO cuota (valorCuota, formaPago, fechaVencimiento, idSocio, cuotasTarjeta) 
+    VALUES (monto,  medioPago,fechaVencimiento, idSocio, cuotasTarjeta);
+END //
+DELIMITER ;
+
+-- select * from nosocio;
+-- select * from socio;
+-- select * from cuota;
+
+-- Query para ver socio y fecha vencimiento de la cuota
+-- select s.*, c.fechaVencimiento from socio s join cuota c on s.idSocio = c.idSocio;

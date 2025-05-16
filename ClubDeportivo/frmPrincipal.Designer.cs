@@ -28,110 +28,113 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnRegistrarCliente = new Button();
-            btnInscribirAct = new Button();
-            btnPagarCuota = new Button();
-            btnEmitirCarnet = new Button();
-            btnExit = new Button();
-            lblIngreso = new Label();
-            SuspendLayout();
+            this.btnRegistrarCliente = new System.Windows.Forms.Button();
+            this.btnInscribirActividad = new System.Windows.Forms.Button();
+            this.btnPagarCuota = new System.Windows.Forms.Button();
+            this.btnListarVencimientos = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.lblIngreso = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // btnRegistrarCliente
             // 
-            btnRegistrarCliente.BackColor = Color.MediumSlateBlue;
-            btnRegistrarCliente.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegistrarCliente.ForeColor = SystemColors.ButtonFace;
-            btnRegistrarCliente.Location = new Point(94, 116);
-            btnRegistrarCliente.Name = "btnRegistrarCliente";
-            btnRegistrarCliente.Size = new Size(232, 79);
-            btnRegistrarCliente.TabIndex = 0;
-            btnRegistrarCliente.Text = "Registrar Cliente";
-            btnRegistrarCliente.UseVisualStyleBackColor = false;
-            btnRegistrarCliente.Click += btnRegistrarCliente_Click;
+            this.btnRegistrarCliente.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnRegistrarCliente.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnRegistrarCliente.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnRegistrarCliente.Location = new System.Drawing.Point(94, 116);
+            this.btnRegistrarCliente.Name = "btnRegistrarCliente";
+            this.btnRegistrarCliente.Size = new System.Drawing.Size(232, 79);
+            this.btnRegistrarCliente.TabIndex = 0;
+            this.btnRegistrarCliente.Text = "Registrar Cliente";
+            this.btnRegistrarCliente.UseVisualStyleBackColor = false;
+            this.btnRegistrarCliente.Click += new System.EventHandler(this.btnRegistrarCliente_Click);
             // 
-            // btnInscribirAct
+            // btnInscribirActividad
             // 
-            btnInscribirAct.BackColor = Color.Silver;
-            btnInscribirAct.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnInscribirAct.ForeColor = SystemColors.ButtonFace;
-            btnInscribirAct.Location = new Point(428, 116);
-            btnInscribirAct.Name = "btnInscribirAct";
-            btnInscribirAct.Size = new Size(232, 79);
-            btnInscribirAct.TabIndex = 1;
-            btnInscribirAct.Text = "Inscribir Actividad";
-            btnInscribirAct.UseVisualStyleBackColor = false;
+            this.btnInscribirActividad.BackColor = System.Drawing.Color.Silver;
+            this.btnInscribirActividad.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnInscribirActividad.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnInscribirActividad.Location = new System.Drawing.Point(428, 116);
+            this.btnInscribirActividad.Name = "btnInscribirActividad";
+            this.btnInscribirActividad.Size = new System.Drawing.Size(232, 79);
+            this.btnInscribirActividad.TabIndex = 1;
+            this.btnInscribirActividad.Text = "Inscribir Actividad";
+            this.btnInscribirActividad.UseVisualStyleBackColor = false;
+            this.btnInscribirActividad.Enabled = false;
             // 
             // btnPagarCuota
             // 
-            btnPagarCuota.BackColor = Color.Silver;
-            btnPagarCuota.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPagarCuota.ForeColor = SystemColors.ButtonFace;
-            btnPagarCuota.Location = new Point(94, 272);
-            btnPagarCuota.Name = "btnPagarCuota";
-            btnPagarCuota.Size = new Size(232, 79);
-            btnPagarCuota.TabIndex = 2;
-            btnPagarCuota.Text = "Pagar Cuota";
-            btnPagarCuota.UseVisualStyleBackColor = false;
+            this.btnPagarCuota.BackColor = System.Drawing.Color.Silver;
+            this.btnPagarCuota.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnPagarCuota.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPagarCuota.Location = new System.Drawing.Point(94, 272);
+            this.btnPagarCuota.Name = "btnPagarCuota";
+            this.btnPagarCuota.Size = new System.Drawing.Size(232, 79);
+            this.btnPagarCuota.TabIndex = 2;
+            this.btnPagarCuota.Text = "Pagar Cuota";
+            this.btnPagarCuota.UseVisualStyleBackColor = false;
+            this.btnPagarCuota.Enabled = false;
             // 
-            // btnEmitirCarnet
+            // btnListarVencimientos
             // 
-            btnEmitirCarnet.BackColor = Color.SlateBlue;
-            btnEmitirCarnet.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEmitirCarnet.ForeColor = SystemColors.ButtonFace;
-            btnEmitirCarnet.Location = new Point(428, 272);
-            btnEmitirCarnet.Name = "btnEmitirCarnet";
-            btnEmitirCarnet.Size = new Size(232, 79);
-            btnEmitirCarnet.TabIndex = 3;
-            btnEmitirCarnet.Text = "Emitir Carnet";
-            btnEmitirCarnet.UseVisualStyleBackColor = false;
+            this.btnListarVencimientos.BackColor = System.Drawing.Color.SlateBlue;
+            this.btnListarVencimientos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnListarVencimientos.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnListarVencimientos.Location = new System.Drawing.Point(428, 272);
+            this.btnListarVencimientos.Name = "btnListarVencimientos";
+            this.btnListarVencimientos.Size = new System.Drawing.Size(232, 79);
+            this.btnListarVencimientos.TabIndex = 3;
+            this.btnListarVencimientos.Text = "Listar Vencimientos";
+            this.btnListarVencimientos.UseVisualStyleBackColor = false;
+            this.btnListarVencimientos.Enabled = false;
             // 
             // btnExit
             // 
-            btnExit.BackColor = Color.IndianRed;
-            btnExit.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExit.ForeColor = SystemColors.ButtonFace;
-            btnExit.Location = new Point(672, 24);
-            btnExit.Name = "btnExit";
-            btnExit.Size = new Size(107, 31);
-            btnExit.TabIndex = 4;
-            btnExit.Text = "Salir";
-            btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btnExit_Click;
+            this.btnExit.BackColor = System.Drawing.Color.IndianRed;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnExit.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnExit.Location = new System.Drawing.Point(672, 24);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(107, 31);
+            this.btnExit.TabIndex = 4;
+            this.btnExit.Text = "Salir";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // lblIngreso
             // 
-            lblIngreso.AutoSize = true;
-            lblIngreso.Location = new Point(94, 24);
-            lblIngreso.Name = "lblIngreso";
-            lblIngreso.Size = new Size(0, 20);
-            lblIngreso.TabIndex = 5;
+            this.lblIngreso.AutoSize = true;
+            this.lblIngreso.Location = new System.Drawing.Point(94, 24);
+            this.lblIngreso.Name = "lblIngreso";
+            this.lblIngreso.Size = new System.Drawing.Size(0, 20);
+            this.lblIngreso.TabIndex = 5;
             // 
             // frmPrincipal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
-            ClientSize = new Size(800, 450);
-            Controls.Add(lblIngreso);
-            Controls.Add(btnExit);
-            Controls.Add(btnEmitirCarnet);
-            Controls.Add(btnPagarCuota);
-            Controls.Add(btnInscribirAct);
-            Controls.Add(btnRegistrarCliente);
-            Name = "frmPrincipal";
-            Text = "Ventana Principal";
-            Load += frmPrincipal_Load;
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblIngreso);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnListarVencimientos);
+            this.Controls.Add(this.btnPagarCuota);
+            this.Controls.Add(this.btnInscribirActividad);
+            this.Controls.Add(this.btnRegistrarCliente);
+            this.Name = "frmPrincipal";
+            this.Text = "Ventana Principal";
+            this.Load += new System.EventHandler(this.frmPrincipal_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
 
-        private Button btnRegistrarCliente;
-        private Button btnInscribirAct;
-        private Button btnPagarCuota;
-        private Button btnEmitirCarnet;
-        private Button btnExit;
-        private Label lblIngreso;
+        private System.Windows.Forms.Button btnRegistrarCliente;
+        private System.Windows.Forms.Button btnInscribirActividad;
+        private System.Windows.Forms.Button btnPagarCuota;
+        private System.Windows.Forms.Button btnListarVencimientos;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Label lblIngreso;
     }
 }

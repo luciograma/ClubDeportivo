@@ -7,9 +7,8 @@ CREATE PROCEDURE IngresoLogin(
 BEGIN
     SELECT 1 AS LoginValido
     FROM usuario u
-    WHERE u.nombreUsu = Usu
-      AND u.passUsu = Pass
-      AND u.activo = 1
+    WHERE u.nombreUsuario = Usu
+      AND u.passwordUsuario = Pass
     LIMIT 1;
 END
 //

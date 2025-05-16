@@ -46,23 +46,24 @@
             btnIngresar.TabIndex = 2;
             btnIngresar.Text = "INGRESAR";
             btnIngresar.UseVisualStyleBackColor = false;
-            btnIngresar.Click += new EventHandler(btnIngresar_Click);
+            btnIngresar.Click += btnIngresar_Click;
             // 
             // txtUsuario
             // 
             txtUsuario.Font = new Font("Segoe UI", 9F);
             txtUsuario.Location = new Point(456, 101);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(249, 27);
+            txtUsuario.Size = new Size(249, 23);
             txtUsuario.TabIndex = 3;
             txtUsuario.Text = "USUARIO";
+            txtUsuario.TextChanged += txtUsuario_TextChanged;
             // 
             // txtPass
             // 
             txtPass.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPass.Location = new Point(456, 168);
             txtPass.Name = "txtPass";
-            txtPass.Size = new Size(249, 27);
+            txtPass.Size = new Size(249, 23);
             txtPass.TabIndex = 4;
             txtPass.Text = "CONTRASEÑA";
             // 
@@ -78,7 +79,7 @@
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(900, 450);
             Controls.Add(imageLogin);

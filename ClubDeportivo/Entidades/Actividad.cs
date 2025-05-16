@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
-    internal class E_Actividad
+    internal class Actividad
     {
         private long id;
         private string nombre;
         private double precio;
         private long cupo;
-        private string horario;
+        private DateTime horario;
 
-        public E_Actividad() { }
+        public Actividad() { }
 
-        public E_Actividad(long id, string nombre, double precio, long cupo, string horario)
+        public Actividad(long id, string nombre, double precio, long cupo, DateTime horario)
         {
             this.id = id;
             this.nombre = nombre;
@@ -29,7 +29,7 @@ namespace ClubDeportivo.Entidades
         public string Nombre { get => nombre; set => nombre = value; }
         public double Precio { get => precio; set => precio = value; }
         public long Cupo { get => cupo; set => cupo = value; }
-        public string Horario { get => horario; set => horario = value; }
+        public DateTime Horario { get => horario; set => horario = value; }
 
         public bool CrearActividad()
         { return true; }

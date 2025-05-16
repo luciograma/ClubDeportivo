@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
-    internal class E_PagoActividad
+    internal class PagoActividad
     {
         private long id;
         private long noSocioId;

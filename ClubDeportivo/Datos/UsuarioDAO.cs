@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
-using MySqlX.XDevAPI;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ClubDeportivo.Datos
 {
-    internal class Usuario
+    internal class UsuarioDAO
     {
         // creamos un metodo que retorne una tabla con la informacion
-        public DataTable Log_Usuario(string username, string password)
+        public DataTable Log_Usuario(string nombreUsuario, string passwordUsuario)
         {
             MySqlDataReader resultado; // variable de tipo datareader
             DataTable tabla = new DataTable();
@@ -28,11 +21,16 @@ namespace ClubDeportivo.Datos
                 comando.CommandType = CommandType.StoredProcedure;
                 
                 // definimos los parametros que tiene el procedure
-                comando.Parameters.Add("Usu", MySqlDbType.VarChar).Value = username;
-                comando.Parameters.Add("Pass", MySqlDbType.VarChar).Value =  password;
-                
+                comando.Parameters.Add("Usu", MySqlDbType.VarChar).Value = nombreUsuario;
+                comando.Parameters.Add("Pass", MySqlDbType.VarChar).Value = passwordUsuario;
+
                 // abrimos la conexion
-                sqlCon.Open();
+                try {
+                    sqlCon.Open();
+                } catch (Exception ex) {
+                    MessageBox.Show("Error al abrir la conexión: " + ex.Message);
+                    return null;
+                }
                 resultado = comando.ExecuteReader(); // almacenamos el resulatdo en la variable
                 tabla.Load(resultado); // cargamos la tabla con el  resultado
                 return tabla;

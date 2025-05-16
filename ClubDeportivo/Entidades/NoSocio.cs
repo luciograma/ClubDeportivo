@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubDeportivo.Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
-    internal class E_NoSocio: E_Cliente
+    internal class NoSocio: Cliente
     {
         private long idNoSocio;
-        public E_NoSocio() { }
+        public NoSocio() { }
 
-        public E_NoSocio(long idNoSocio) 
+        public NoSocio(long idNoSocio) 
         {
             this.idNoSocio = idNoSocio;
         }
@@ -19,9 +20,11 @@ namespace ClubDeportivo.Entidades
         {
             return true;
         }
-        public override void RegistrarCliente()
+        public override string RegistrarCliente()
         {
-            InscribirActividad();
+            NoSocioDAO dao = new NoSocioDAO();
+            return dao.Alta_NoSocio(this);
         }
+
     }
 }

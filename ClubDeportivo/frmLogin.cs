@@ -61,14 +61,14 @@ namespace ClubDeportivo
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             DataTable tablaLogin = new DataTable(); // es la que recibe los datos desde el formulario
-            Datos.Usuario dato = new Datos.Usuario(); // variable que contiene todas las caracteristicas de la clase
+            Datos.UsuarioDAO dato = new Datos.UsuarioDAO(); // variable que contiene todas las caracteristicas de la clase
             tablaLogin = dato.Log_Usuario(txtUsuario.Text, txtPass.Text);
             if (tablaLogin.Rows.Count > 0)
             {
                 // ____ quiere decir que el resultado tiene 1 fila por lo que el usuario EXISTE ___
-            // _____ informamos con un mensaje al usuario _____
-            MessageBox.Show("Ingreso exitoso", "MENSAJES DEL SISTEMA",
-            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // _____ informamos con un mensaje al usuario _____
+                MessageBox.Show("Ingreso exitoso", "MENSAJES DEL SISTEMA",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
                 /*
                 __________________________________________________________
                 ___________________
@@ -107,6 +107,11 @@ namespace ClubDeportivo
             {
                 btn.Focus();
             }
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

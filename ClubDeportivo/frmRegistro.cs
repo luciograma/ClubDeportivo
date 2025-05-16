@@ -67,34 +67,33 @@ namespace ClubDeportivo
                 if (checkSocio.Checked)
                 {
                     // Instancio Socio
-                    E_Socio socio = new E_Socio();
+                    Socio socio = new Socio();
                     socio.Nombre = txtNombre.Text;
                     socio.Apellido = txtApellido.Text;
                     socio.Dni = Convert.ToInt32(txtDNI.Text);
                     socio.Email = txtEmail.Text;
-                    socio.FechaEmisionCarnet = DateTime.Now;
 
-                    Datos.Socio socioDatos = new Datos.Socio();
-                    respuesta = socioDatos.Nuevo_Socio(socio);
+                    Datos.SocioDAO socioDatos = new Datos.SocioDAO();
+                    respuesta = socio.RegistrarCliente();
                 }
                 else
                 {
-                    // Instancio NoSocio
-                    E_NoSocio noSocio = new E_NoSocio();
+                    // Instancio NoSocioDAO
+                    NoSocio noSocio = new NoSocio();
                     noSocio.Nombre = txtNombre.Text;
                     noSocio.Apellido = txtApellido.Text;
                     noSocio.Dni = Convert.ToInt32(txtDNI.Text);
                     noSocio.Email = txtEmail.Text;
 
-                    Datos.NoSocio noSocioDatos = new Datos.NoSocio();
-                    respuesta = noSocioDatos.Nuevo_NoSocio(noSocio);
+                    Datos.NoSocioDAO noSocioDatos = new Datos.NoSocioDAO();
+                    respuesta = noSocio.RegistrarCliente();
                 }
 
                 esnumero = int.TryParse(respuesta, out int codigo);
 
                 if (esnumero)
                 {
-                    if (codigo == 1)
+                    if (codigo == -1)
                     {
                         MessageBox.Show("EL CLIENTE YA EXISTE", "AVISO DEL SISTEMA",
                         MessageBoxButtons.OK,

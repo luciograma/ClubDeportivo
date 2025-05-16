@@ -16,9 +16,9 @@ namespace ClubDeportivo
         {
             InitializeComponent();
             btnRegistrarCliente.MouseEnter += Boton_MouseEnter;
-            btnEmitirCarnet.MouseEnter += Boton_MouseEnter;
+            btnListarVencimientos.MouseEnter += Boton_MouseEnter;
             btnExit.MouseEnter += Boton_MouseEnter;
-            btnInscribirAct.MouseEnter += Boton_MouseEnter;
+            btnInscribirActividad.MouseEnter += Boton_MouseEnter;
             btnPagarCuota.MouseEnter += Boton_MouseEnter;
         }
 
@@ -27,7 +27,7 @@ namespace ClubDeportivo
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            lblIngreso.Text = "USUARIO: " + usuario;           
+            lblIngreso.Text = "USUARIO: " + usuario;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -44,12 +44,17 @@ namespace ClubDeportivo
 
         private void btnPagarCuota_Click(object sender, EventArgs e)
         {
-
+            // Funcionalidad pendiente
         }
 
         private void btnInscribirAct_Click(object sender, EventArgs e)
         {
+            // Funcionalidad pendiente
+        }
 
+        private void btnEmitirCarnet_Click(object sender, EventArgs e)
+        {
+            // Funcionalidad pendiente (en realidad: listar vencimientos)
         }
 
         private void Boton_MouseEnter(object sender, EventArgs e)
