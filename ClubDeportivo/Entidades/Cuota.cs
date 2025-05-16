@@ -38,7 +38,6 @@ namespace ClubDeportivo.Entidades
             CuotaDAO dao = new CuotaDAO();
             string resultado = dao.RegistrarCuota(this);
             
-            //TODO probar poniendo un error
             if (resultado == "OK")
                 return true;
             else
