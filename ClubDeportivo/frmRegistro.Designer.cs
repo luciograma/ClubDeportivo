@@ -93,7 +93,7 @@
             tltRegistro.BackColor = Color.Transparent;
             tltRegistro.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             tltRegistro.ForeColor = SystemColors.ButtonHighlight;
-            tltRegistro.Location = new Point(364, 41);
+            tltRegistro.Location = new Point(382, 41);
             tltRegistro.Name = "tltRegistro";
             tltRegistro.Size = new Size(335, 41);
             tltRegistro.TabIndex = 7;

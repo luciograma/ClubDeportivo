@@ -44,13 +44,15 @@ namespace ClubDeportivo
         private void btnRegistrarCliente_Click(object sender, EventArgs e)
         {
             frmRegistro registro = new frmRegistro();
+            registro.StartPosition = FormStartPosition.CenterParent;
             registro.Show();
-            this.Hide();
         }
 
         private void btnPagarCuota_Click(object sender, EventArgs e)
         {
-            // Funcionalidad pendiente
+            frmCuota cuotaPopUp = new frmCuota();
+            cuotaPopUp.StartPosition = FormStartPosition.CenterParent;
+            cuotaPopUp.Show();
         }
 
         private void btnInscribirAct_Click(object sender, EventArgs e)

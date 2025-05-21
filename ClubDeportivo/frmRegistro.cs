@@ -41,9 +41,7 @@ namespace ClubDeportivo
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            frmPrincipal principal = new frmPrincipal();
-            principal.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -105,8 +103,6 @@ namespace ClubDeportivo
                         "AVISO DEL SISTEMA",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
-                        frmPrincipal principal = new frmPrincipal();
-                        principal.Show();
                         this.Hide();
                     }
                 }

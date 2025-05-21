@@ -3,6 +3,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,10 @@ namespace ClubDeportivo.Datos
                 comando.Parameters.Add("monto", MySqlDbType.Double).Value = cuota.Monto;
                 comando.Parameters.Add("medioPago", MySqlDbType.VarChar).Value = cuota.MedioPago;
                 comando.Parameters.Add("cuotasTarjeta", MySqlDbType.Int32).Value = cuota.CuotasTarjeta;
-
+                foreach (MySqlParameter param in comando.Parameters)
+                {
+                    Debug.WriteLine($"Param: {param.ParameterName} = {param.Value}");
+                }
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
                 salida = "OK";

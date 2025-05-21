@@ -1,6 +1,8 @@
 ﻿using ClubDeportivo.Datos;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace ClubDeportivo.Entidades
 
         public Socio() { }
 
-        public Socio(long idSocio, string nombre, string apellido, long dni, string email, long nroSocio, DateTime fechaEmisionCarnet) : base(nombre, apellido, dni, email)
+        public Socio(long idSocio, string nombre, string apellido, long dni, string email, DateTime fechaEmisionCarnet) : base(nombre, apellido, dni, email)
         {
             IdSocio = idSocio;
             FechaEmisionCarnet = fechaEmisionCarnet;
@@ -52,6 +54,49 @@ namespace ClubDeportivo.Entidades
 
             return resultado;
         }
+
+        public Socio ObtenerSocioPorId(int idSocio)
+        {
+            Socio socio = null;
+            MySqlConnection sqlCon = new MySqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                string query = "SELECT idSocio, nombre, apellido, dni, email, fechaEmisionCarnet FROM Socio WHERE idSocio = @idSocio";
+                MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                comando.Parameters.AddWithValue("@idSocio", idSocio);
+
+                sqlCon.Open();
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    socio = new Socio
+                    {
+                        IdSocio = reader.GetInt32("idSocio"),
+                        Nombre = reader.GetString("nombre"),
+                        Apellido = reader.GetString("apellido"),
+                        Dni = reader.GetInt32("dni"),
+                        Email = reader.GetString("email"),
+                        FechaEmisionCarnet = reader.GetDateTime("fechaEmisionCarnet")
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener el socio: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+
+            return socio;
+        }
+
+
 
         public bool BajaSocio() {
             return true;

@@ -77,6 +77,7 @@
             btnPagarCuota.TabIndex = 2;
             btnPagarCuota.Text = "Pagar Cuota";
             btnPagarCuota.UseVisualStyleBackColor = false;
+            btnPagarCuota.Click += btnPagarCuota_Click;
             // 
             // btnListarVencimientos
             // 
@@ -95,7 +96,7 @@
             btnExit.BackColor = Color.IndianRed;
             btnExit.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnExit.ForeColor = SystemColors.ButtonFace;
-            btnExit.Location = new Point(806, 471);
+            btnExit.Location = new Point(807, 493);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(107, 31);
             btnExit.TabIndex = 4;
