@@ -27,7 +27,7 @@ namespace ClubDeportivo
         Dictionary<Button, Color> coloresOriginales = new Dictionary<Button, Color>();
 
         private void frmPrincipal_Load(object sender, EventArgs e)
-        {}
+        { }
 
         private void RegistrarBoton(Button boton)
         {
@@ -53,11 +53,6 @@ namespace ClubDeportivo
             frmCuota cuotaPopUp = new frmCuota();
             cuotaPopUp.StartPosition = FormStartPosition.CenterParent;
             cuotaPopUp.Show();
-        }
-
-        private void btnInscribirAct_Click(object sender, EventArgs e)
-        {
-            // Funcionalidad pendiente
         }
 
         private void btnEmitirCarnet_Click(object sender, EventArgs e)
@@ -87,6 +82,13 @@ namespace ClubDeportivo
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnInscribirActividad_click(object sender, EventArgs e)
+        {
+            frmInscripcionActividad inscribirActividad = new frmInscripcionActividad();
+            inscribirActividad.StartPosition = FormStartPosition.CenterParent;
+            inscribirActividad.Show();
         }
     }
 }

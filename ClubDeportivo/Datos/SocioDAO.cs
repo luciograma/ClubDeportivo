@@ -42,5 +42,46 @@ namespace ClubDeportivo.Datos
             }
             return salida;
         }
+
+        public Socio ObtenerSocioPorId(int idSocio)
+        {
+            Socio socio = null;
+
+            using (MySqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
+            {
+                try
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("ObtenerSocioPorId", sqlCon))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("p_idSocio", idSocio);
+
+                        sqlCon.Open();
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                socio = new Socio
+                                {
+                                    IdSocio = reader.GetInt32("idSocio"),
+                                    Nombre = reader.GetString("nombre"),
+                                    Apellido = reader.GetString("apellido"),
+                                    Dni = reader.GetInt32("dni"),
+                                    Email = reader.GetString("email"),
+                                    FechaEmisionCarnet = reader.GetDateTime("fechaEmisionCarnet")
+                                };
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al obtener el socio: " + ex.Message);
+                }
+            }
+
+            return socio;
+        }
     }
 }

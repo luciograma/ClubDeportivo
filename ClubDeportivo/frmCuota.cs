@@ -1,4 +1,5 @@
-﻿using ClubDeportivo.Entidades;
+﻿using ClubDeportivo.Datos;
+using ClubDeportivo.Entidades;
 using Org.BouncyCastle.Pkcs;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace ClubDeportivo
             }
 
             // Buscar socio
-            Socio socio = new Socio().ObtenerSocioPorId(nroSocio);
+            Socio socio = new SocioDAO().ObtenerSocioPorId(nroSocio);
             if (socio == null)
             {
                 MostrarError("No existe ese Nro. de Socio, por favor ingrese uno correcto.");

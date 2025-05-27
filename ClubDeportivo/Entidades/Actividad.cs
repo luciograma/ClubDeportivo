@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClubDeportivo.Datos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,10 @@ namespace ClubDeportivo.Entidades
         public long Cupo { get => cupo; set => cupo = value; }
         public DateTime Horario { get => horario; set => horario = value; }
 
+        public static List<Actividad> ObtenerActividades()
+        {
+            return new ActividadDAO().GetActividadesLista();
+        }
         public bool CrearActividad()
         { return true; }
         public bool ActualizarActividad()

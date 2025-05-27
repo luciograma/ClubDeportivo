@@ -41,5 +41,45 @@ namespace ClubDeportivo.Datos
             }
             return salida;
         }
+        public NoSocio ObtenerNoSocioPorId(int idNoSocio)
+        {
+            NoSocio noSocio = null;
+            MySqlConnection sqlCon = new MySqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                string query = "SELECT idNoSocio, nombre, apellido, dni, email FROM NoSocio WHERE idNoSocio = @idNoSocio";
+                MySqlCommand comando = new MySqlCommand(query, sqlCon);
+                comando.Parameters.AddWithValue("@idNoSocio", idNoSocio);
+
+                sqlCon.Open();
+                MySqlDataReader reader = comando.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    noSocio = new NoSocio
+                    {
+                        IdNoSocio = reader.GetInt32("idNoSocio"),
+                        Nombre = reader.GetString("nombre"),
+                        Apellido = reader.GetString("apellido"),
+                        Dni = reader.GetInt32("dni"),
+                        Email = reader.GetString("email")
+                    };
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener cliente: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open)
+                    sqlCon.Close();
+            }
+
+            return noSocio;
+        }
+
     }
 }

@@ -65,6 +65,7 @@
             btnInscribirActividad.TabIndex = 1;
             btnInscribirActividad.Text = "Inscribir Actividad";
             btnInscribirActividad.UseVisualStyleBackColor = false;
+            btnInscribirActividad.Click += btnInscribirActividad_click;
             // 
             // btnPagarCuota
             // 

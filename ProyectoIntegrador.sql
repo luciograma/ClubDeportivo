@@ -29,13 +29,14 @@ CREATE TABLE actividad(
 	idActividad int auto_increment PRIMARY KEY,
     nombre varchar(30),
     precio float,
-    horario datetime,
+    horario time,
     cupo int
 );
 
 CREATE TABLE noSocio_actividad(
 	idNoSocio int,
     idActividad int,
+    fechaDePago datetime,
     PRIMARY KEY(idNoSocio, idActividad),
     FOREIGN KEY (idNoSocio) REFERENCES noSocio(idNoSocio),
     FOREIGN KEY (idActividad) REFERENCES actividad(idActividad)
@@ -55,6 +56,13 @@ CREATE TABLE cuota (
 INSERT INTO usuario (NombreUsuario,PasswordUsuario) values 
 ("admin","admin");
 
+INSERT INTO actividad (Nombre,Precio,Horario,Cupo) values
+("Fútbol", 3000, "14:30:00", 12),
+("Basquet", 3000, "17:00:00", 15),
+("Natación", 4000, "15:30:00", 10),
+("Yoga", 3500, "11:30:00", 3),
+("Tenis", 5000, "18:00:00", 5);
+
 
 delimiter //
 CREATE PROCEDURE IngresoLogin(
@@ -67,6 +75,15 @@ BEGIN
     WHERE u.nombreUsuario = Usu
       AND u.passwordUsuario = Pass
     LIMIT 1;
+END
+//
+delimiter ;
+
+delimiter //
+CREATE PROCEDURE GetActividades()
+BEGIN
+    SELECT idActividad, nombre, precio, cupo
+    FROM actividad;
 END
 //
 delimiter ;
@@ -132,9 +149,61 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE InscribirActividad(
+    IN idNoSocio INT,
+    IN idActividad INT,
+    IN fechaDePago datetime
+)
+BEGIN
+    INSERT INTO nosocio_actividad (IdNoSocio,IdActividad,FechaDePago) 
+    VALUES (idNoSocio, idActividad, fechaDePago);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE HayCupoDisponible(
+    IN p_idActividad INT,
+    OUT p_hayCupo BOOLEAN
+)
+BEGIN
+    DECLARE v_cupo INT;
+    DECLARE v_inscriptos INT;
+
+    SELECT cupo INTO v_cupo
+    FROM actividad
+    WHERE idActividad = p_idActividad;
+
+    SELECT COUNT(*) INTO v_inscriptos
+    FROM noSocio_actividad
+    WHERE idActividad = p_idActividad;
+
+    IF v_inscriptos < v_cupo THEN
+        SET p_hayCupo = TRUE;
+    ELSE
+        SET p_hayCupo = FALSE;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ObtenerSocioPorId(IN p_idSocio INT)
+BEGIN
+    SELECT idSocio, nombre, apellido, dni, email, fechaEmisionCarnet
+    FROM Socio
+    WHERE idSocio = p_idSocio;
+END //
+DELIMITER ;
+
+
+
 -- select * from nosocio;
 -- select * from socio;
 -- select * from cuota; 
+-- select * from actividad;
+-- select * from nosocio_actividad;
 
 -- Query para ver socio y fecha vencimiento de la cuota
 -- select s.*, c.fechaVencimiento from socio s join cuota c on s.idSocio = c.idSocio;
+
+

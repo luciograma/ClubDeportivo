@@ -1,6 +1,8 @@
 ﻿using ClubDeportivo.Datos;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +18,9 @@ namespace ClubDeportivo.Entidades
         {
             this.idNoSocio = idNoSocio;
         }
-        public bool InscribirActividad()
-        {
-            return true;
-        }
+
+        public long IdNoSocio { get => idNoSocio; set => idNoSocio = value; }
+
         public override string RegistrarCliente()
         {
             NoSocioDAO dao = new NoSocioDAO();
