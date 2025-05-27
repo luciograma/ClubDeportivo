@@ -33,6 +33,17 @@ namespace ClubDeportivo.Datos
                 comando.ExecuteNonQuery();
                 salida = "OK";
             }
+            catch(MySqlException e)
+            {
+                if (e.Number == 1062) // Ya existe la inscripción para el cliente
+                {
+                    salida = "Ya existe una inscripción para ese cliente en esta actividad.";
+                }
+                else
+                {
+                    salida = e.Message;
+                }
+            }
             catch (Exception ex)
             {
                 salida = ex.Message;

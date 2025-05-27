@@ -76,3 +76,4 @@ C:\Users\ayele\Documents\Tecnicatura Desarrollo de Software\DSOO\ProyectoIngregr
 C:\Users\ayele\Documents\Tecnicatura Desarrollo de Software\DSOO\ProyectoIngregrador\ClubDeportivo\obj\Debug\net8.0-windows\ClubDeportivo.pdb
 C:\Users\ayele\Documents\Tecnicatura Desarrollo de Software\DSOO\ProyectoIngregrador\ClubDeportivo\obj\Debug\net8.0-windows\ClubDeportivo.genruntimeconfig.cache
 C:\Users\ayele\Documents\Tecnicatura Desarrollo de Software\DSOO\ProyectoIngregrador\ClubDeportivo\obj\Debug\net8.0-windows\ref\ClubDeportivo.dll
+C:\Users\ayele\Documents\Tecnicatura Desarrollo de Software\DSOO\ProyectoIngregrador\ClubDeportivo\obj\Debug\net8.0-windows\ClubDeportivo.frmComprobante.resources

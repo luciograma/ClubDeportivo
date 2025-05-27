@@ -28,20 +28,10 @@ namespace ClubDeportivo.Entidades
         public long ActividadId { get { return actividadId; } set { actividadId = value; } }
         public DateTime FechaDePago { get { return fechaDePago; } set { fechaDePago = value; } }
 
-        public bool InscribirActividad()
+        public string InscribirActividad()
         {
             PagoActividadDAO dao = new PagoActividadDAO();
-            string resultado = dao.InscribirActividad(this);
-
-            if (resultado == "OK")
-                return true;
-            else
-            {
-                MessageBox.Show("Error al registrar pago de actividad: " + resultado, "AVISO DEL SISTEMA",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-
-            }
+            return dao.InscribirActividad(this);
         }
     }
 }

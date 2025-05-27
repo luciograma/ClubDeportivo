@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -101,14 +102,14 @@ namespace ClubDeportivo
                 return;
             }
 
-            object selected = cmbActividades.SelectedValue;
-            if (selected == null || !int.TryParse(selected.ToString(), out int actividadId) || actividadId == 0)
+            Actividad actividad = cmbActividades.SelectedItem as Actividad;
+            if (actividad == null || actividad.Id == 0)
             {
                 MostrarError("Debe seleccionar una actividad válida.");
                 return;
             }
             //valido si hay cupo disponible
-            if (!new ActividadDAO().HayCupoDisponible(actividadId))
+            if (!new ActividadDAO().HayCupoDisponible((int)actividad.Id))
             {
                 MostrarError("No hay cupo disponible para esta actividad.");
                 return;
@@ -119,21 +120,37 @@ namespace ClubDeportivo
             PagoActividad pagoActividad = new PagoActividad
             {
                 NoSocioId = nroNoSocio,
-                ActividadId = actividadId,
+                ActividadId = actividad.Id,
                 FechaDePago = DateTime.Now
             };
 
             // Inscripción 
-            bool resultado = pagoActividad.InscribirActividad();
-            if (resultado)
+            string resultado = pagoActividad.InscribirActividad();
+            if (resultado == "OK")
             {
-                MessageBox.Show("Se almacenó con éxito el pago.", "AVISO DEL SISTEMA",
+                MessageBox.Show("Se realizó con éxito la inscripción", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
+                
+                // Mensaje para imprimir comprobante
+                DialogResult impresion = MessageBox.Show(
+                    "¿Desea imprimir el comprobante de inscripción?",
+                    "Comprobante",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question
+        );
+
+                if (impresion == DialogResult.Yes)
+                {
+                    GenerarComprobante(noSocio, actividad);
+                }
+                else
+                {
+                    LimpiarFormulario();
+                }
             }
             else
             {
-                MostrarError("Hubo un error al registrar el pago: " + resultado);
+                MostrarError("Hubo un error al realizar la inscripción: " + resultado);
             }
         }
 
@@ -170,5 +187,86 @@ namespace ClubDeportivo
         {
             this.Close();
         }
+
+        private void GenerarComprobante(NoSocio noSocio, Actividad actividad)
+        {
+            PrintDocument doc = new PrintDocument();
+            doc.PrintPage += (sender, e) => ImprimirComprobante(e, noSocio, actividad);
+
+            PrintPreviewDialog preview = new PrintPreviewDialog();
+            preview.Document = doc;
+
+            //limpiar formulario
+            preview.FormClosed += (s, e) => LimpiarFormulario();
+            preview.ShowDialog();
+        }
+
+        private void ImprimirComprobante(PrintPageEventArgs e, NoSocio noSocio, Actividad actividad)
+        {
+
+            string nombreSistema = "CLUB DEPORTIVO";
+            string cliente = $"{noSocio.Apellido}, {noSocio.Nombre}";
+            string actividadNombre = actividad.Nombre;
+            string fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
+            string monto = $"${actividad.Precio:N2}";
+
+            Font fuenteTicket = new Font("Courier New", 10, FontStyle.Regular);
+            Font fuenteTitulo = new Font("Courier New", 12, FontStyle.Bold);
+            Font fuenteSistema = new Font("Courier New", 14, FontStyle.Bold);
+
+            int y = 20;
+            int espacio = 18;
+            int anchoPagina = e.PageBounds.Width;
+
+            // Centrar texto
+            void DrawCentered(string texto, Font fuente, int yPos)
+            {
+                SizeF size = e.Graphics.MeasureString(texto, fuente);
+                float x = (anchoPagina - size.Width) / 2;
+                e.Graphics.DrawString(texto, fuente, Brushes.Black, x, yPos);
+            }
+
+            // Imprimir encabezado
+            DrawCentered(nombreSistema, fuenteSistema, y);
+            y += espacio * 2;
+
+            DrawCentered("COMPROBANTE DE INSCRIPCIÓN", fuenteTitulo, y);
+            y += espacio * 2;
+
+            // Imprimir datos en columnas
+            e.Graphics.DrawString($"Cliente: {cliente}", fuenteTicket, Brushes.Black, 20, y); y += espacio;
+            e.Graphics.DrawString($"Actividad: {actividadNombre}", fuenteTicket, Brushes.Black, 20, y); y += espacio;
+            e.Graphics.DrawString($"Fecha: {fecha}", fuenteTicket, Brushes.Black, 20, y); y += espacio;
+
+            e.Graphics.DrawString("------------------------------------", fuenteTicket, Brushes.Black, 20, y);
+            y += espacio;
+
+            string labelMonto = "Monto abonado:";
+            string valorMonto = monto;
+
+            SizeF sizeLabel = e.Graphics.MeasureString(labelMonto, fuenteTicket);
+            SizeF sizeValor = e.Graphics.MeasureString(valorMonto, fuenteTicket);
+
+            float posLabel = 20;
+            float posValor = anchoPagina - sizeValor.Width - 20;
+
+            e.Graphics.DrawString(labelMonto, fuenteTicket, Brushes.Black, posLabel, y);
+            e.Graphics.DrawString(valorMonto, fuenteTicket, Brushes.Black, posValor, y);
+
+            y += espacio * 2;
+
+            DrawCentered("¡Gracias por su inscripción!", fuenteTicket, y);
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtNroNoSocio.Clear();
+            txtMontoAct.Clear();
+            cmbActividades.SelectedIndex = 0;
+            lblCupo.Text = "";
+            lblCupo.Visible = false;
+            btnPagarAct.Enabled = false;
+        }
+
     }
 }
