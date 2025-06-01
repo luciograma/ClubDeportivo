@@ -33,7 +33,7 @@ CREATE TABLE actividad(
     cupo int
 );
 
-CREATE TABLE noSocio_actividad(
+CREATE TABLE pagoActividad(
 	idNoSocio int,
     idActividad int,
     fechaDePago datetime,
@@ -153,10 +153,10 @@ DELIMITER //
 CREATE PROCEDURE InscribirActividad(
     IN idNoSocio INT,
     IN idActividad INT,
-    IN fechaDePago datetime
+    IN fechaDePago DATETIME
 )
 BEGIN
-    INSERT INTO nosocio_actividad (IdNoSocio,IdActividad,FechaDePago) 
+    INSERT INTO pagoActividad (idNoSocio, idActividad, fechaDePago)
     VALUES (idNoSocio, idActividad, fechaDePago);
 END //
 DELIMITER ;
@@ -167,24 +167,23 @@ CREATE PROCEDURE HayCupoDisponible(
     OUT p_hayCupo BOOLEAN
 )
 BEGIN
-    DECLARE v_cupo INT;
-    DECLARE v_inscriptos INT;
+    DECLARE v_cupo INT DEFAULT 0;
+    DECLARE v_inscriptos INT DEFAULT 0;
 
-    SELECT cupo INTO v_cupo
+    -- Si no encuentra la actividad, v_cupo queda en 0
+    SELECT COALESCE(cupo, 0) INTO v_cupo
     FROM actividad
     WHERE idActividad = p_idActividad;
 
     SELECT COUNT(*) INTO v_inscriptos
-    FROM noSocio_actividad
+    FROM pagoActividad
     WHERE idActividad = p_idActividad;
 
-    IF v_inscriptos < v_cupo THEN
-        SET p_hayCupo = TRUE;
-    ELSE
-        SET p_hayCupo = FALSE;
-    END IF;
+    SET p_hayCupo = (v_inscriptos < v_cupo);
 END //
 DELIMITER ;
+
+
 
 DELIMITER //
 CREATE PROCEDURE ObtenerSocioPorId(IN p_idSocio INT)
@@ -215,4 +214,7 @@ DELIMITER ;
 -- Query para ver socio y fecha vencimiento de la cuota
 -- select s.*, c.fechaVencimiento from socio s join cuota c on s.idSocio = c.idSocio;
 
-
+-- Query para editar fechaVencimiento de cuota para probar ListarVencimientos
+--UPDATE proyecto.cuota
+--SET fechaVencimiento = DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+--WHERE idCuota = 1;

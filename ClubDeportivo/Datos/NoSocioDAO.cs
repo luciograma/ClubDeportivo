@@ -41,16 +41,16 @@ namespace ClubDeportivo.Datos
             }
             return salida;
         }
-        public NoSocio ObtenerNoSocioPorId(int idNoSocio)
+        public NoSocio ObtenerNoSocioPorDni(int dniNoSocio)
         {
             NoSocio noSocio = null;
             MySqlConnection sqlCon = new MySqlConnection();
             try
             {
                 sqlCon = Conexion.getInstancia().CrearConexion();
-                string query = "SELECT idNoSocio, nombre, apellido, dni, email FROM NoSocio WHERE idNoSocio = @idNoSocio";
+                string query = "SELECT idNoSocio, nombre, apellido, dni, email FROM NoSocio WHERE dni = @dniNoSocio";
                 MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                comando.Parameters.AddWithValue("@idNoSocio", idNoSocio);
+                comando.Parameters.AddWithValue("@dniNoSocio", dniNoSocio);
 
                 sqlCon.Open();
                 MySqlDataReader reader = comando.ExecuteReader();

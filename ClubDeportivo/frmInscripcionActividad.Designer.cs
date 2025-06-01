@@ -32,9 +32,9 @@
             pictureBox1 = new PictureBox();
             txtTitulo = new Label();
             cmbActividades = new ComboBox();
-            txtNroNoSocio = new TextBox();
+            txtDniNoSocio = new TextBox();
             lblActividad = new Label();
-            lblNroNoSocio = new Label();
+            lblDniNoSocio = new Label();
             btnPagarAct = new Button();
             btnVolver = new Button();
             txtMontoAct = new TextBox();
@@ -73,12 +73,12 @@
             cmbActividades.TabIndex = 13;
             cmbActividades.SelectedIndexChanged += cmbActividades_SelectedIndexChanged;
             // 
-            // txtNroNoSocio
+            // txtDniNoSocio
             // 
-            txtNroNoSocio.Location = new Point(214, 195);
-            txtNroNoSocio.Name = "txtNroNoSocio";
-            txtNroNoSocio.Size = new Size(158, 27);
-            txtNroNoSocio.TabIndex = 14;
+            txtDniNoSocio.Location = new Point(214, 195);
+            txtDniNoSocio.Name = "txtDniNoSocio";
+            txtDniNoSocio.Size = new Size(158, 27);
+            txtDniNoSocio.TabIndex = 14;
             // 
             // lblActividad
             // 
@@ -91,16 +91,16 @@
             lblActividad.TabIndex = 17;
             lblActividad.Text = "Actividad";
             // 
-            // lblNroNoSocio
+            // lblDniNoSocio
             // 
-            lblNroNoSocio.AutoSize = true;
-            lblNroNoSocio.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNroNoSocio.ForeColor = SystemColors.ButtonHighlight;
-            lblNroNoSocio.Location = new Point(75, 202);
-            lblNroNoSocio.Name = "lblNroNoSocio";
-            lblNroNoSocio.Size = new Size(92, 20);
-            lblNroNoSocio.TabIndex = 18;
-            lblNroNoSocio.Text = "Nro. Cliente";
+            lblDniNoSocio.AutoSize = true;
+            lblDniNoSocio.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDniNoSocio.ForeColor = SystemColors.ButtonHighlight;
+            lblDniNoSocio.Location = new Point(75, 202);
+            lblDniNoSocio.Name = "lblDniNoSocio";
+            lblDniNoSocio.Size = new Size(92, 20);
+            lblDniNoSocio.TabIndex = 18;
+            lblDniNoSocio.Text = "Nro. DNI";
             // 
             // btnPagarAct
             // 
@@ -171,9 +171,9 @@
             Controls.Add(txtMontoAct);
             Controls.Add(btnVolver);
             Controls.Add(btnPagarAct);
-            Controls.Add(lblNroNoSocio);
+            Controls.Add(lblDniNoSocio);
             Controls.Add(lblActividad);
-            Controls.Add(txtNroNoSocio);
+            Controls.Add(txtDniNoSocio);
             Controls.Add(cmbActividades);
             Controls.Add(txtTitulo);
             Controls.Add(pictureBox1);
@@ -190,9 +190,9 @@
         private PictureBox pictureBox1;
         private Label txtTitulo;
         private ComboBox cmbActividades;
-        private TextBox txtNroNoSocio;
+        private TextBox txtDniNoSocio;
         private Label lblActividad;
-        private Label lblNroNoSocio;
+        private Label lblDniNoSocio;
         private Button btnPagarAct;
         private Button btnVolver;
         private TextBox txtMontoAct;

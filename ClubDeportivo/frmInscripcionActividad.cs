@@ -1,15 +1,6 @@
 ﻿using ClubDeportivo.Datos;
 using ClubDeportivo.Entidades;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ClubDeportivo
 {
@@ -86,19 +77,19 @@ namespace ClubDeportivo
             if (!ValidarCampos())
                 return;
 
-            // Validación de número de cliente
-            if (!int.TryParse(txtNroNoSocio.Text, out int nroNoSocio))
+
+            // Validación de DNI
+            if (!int.TryParse(txtDniNoSocio.Text, out int dniNoSocio))
             {
-                MostrarError("Ingrese un número de cliente válido.");
+                MostrarError("Ingrese un DNI válido.");
                 return;
             }
 
-
             // Buscar cliente
-            NoSocio noSocio = new NoSocioDAO().ObtenerNoSocioPorId(nroNoSocio);
+            NoSocio noSocio = new NoSocioDAO().ObtenerNoSocioPorDni(dniNoSocio);
             if (noSocio == null)
             {
-                MostrarError("No existe ese Nro. de Cliente, por favor ingrese uno correcto.");
+                MostrarError("No existen registro para ese DNI, por favor complete el alta del cliente y pruebe nuevamente.");
                 return;
             }
 
@@ -119,7 +110,7 @@ namespace ClubDeportivo
             // Crear pago/inscripcion
             PagoActividad pagoActividad = new PagoActividad
             {
-                NoSocioId = nroNoSocio,
+                NoSocioId = noSocio.IdNoSocio,
                 ActividadId = actividad.Id,
                 FechaDePago = DateTime.Now
             };
@@ -130,7 +121,7 @@ namespace ClubDeportivo
             {
                 MessageBox.Show("Se realizó con éxito la inscripción", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                 // Mensaje para imprimir comprobante
                 DialogResult impresion = MessageBox.Show(
                     "¿Desea imprimir el comprobante de inscripción?",
@@ -156,7 +147,7 @@ namespace ClubDeportivo
 
         private bool ValidarCampos()
         {
-            if (string.IsNullOrWhiteSpace(txtNroNoSocio.Text))
+            if (string.IsNullOrWhiteSpace(txtDniNoSocio.Text))
             {
                 MostrarError("Debe ingresar el número de no socio.");
                 return false;
@@ -260,7 +251,7 @@ namespace ClubDeportivo
 
         private void LimpiarFormulario()
         {
-            txtNroNoSocio.Clear();
+            txtDniNoSocio.Clear();
             txtMontoAct.Clear();
             cmbActividades.SelectedIndex = 0;
             lblCupo.Text = "";
