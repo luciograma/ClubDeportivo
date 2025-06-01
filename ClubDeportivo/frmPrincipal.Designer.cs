@@ -91,6 +91,7 @@
             btnListarVencimientos.TabIndex = 3;
             btnListarVencimientos.Text = "Listar Vencimientos";
             btnListarVencimientos.UseVisualStyleBackColor = false;
+            btnListarVencimientos.Click += btnListarVencimientos_Click;
             // 
             // btnExit
             // 

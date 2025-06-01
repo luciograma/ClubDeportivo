@@ -55,10 +55,13 @@ namespace ClubDeportivo
             cuotaPopUp.Show();
         }
 
-        private void btnEmitirCarnet_Click(object sender, EventArgs e)
+        private void btnListarVencimientos_Click(object sender, EventArgs e)
         {
-            // Funcionalidad pendiente (en realidad: listar vencimientos)
+            frmVencimientos vencimientos = new frmVencimientos();
+            vencimientos.Show();
+            this.Hide();
         }
+
 
         private void Boton_MouseEnter(object sender, EventArgs e)
         {

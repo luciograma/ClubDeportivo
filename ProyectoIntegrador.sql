@@ -195,8 +195,18 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE ListarVencimientosDelDia()
+BEGIN
+    SELECT s.idSocio, s.nombre, s.apellido, s.dni, c.fechaVencimiento, c.valorCuota
+    FROM socio scuotacuotacuota
+    JOIN cuota c ON s.idSocio = c.idSocio
+    WHERE c.fechaVencimiento = CURDATE();
+END //
+DELIMITER ;
 
- -- select * from nosocio;
+
+-- select * from nosocio;
 -- select * from socio;
 -- select * from cuota; 
 -- select * from actividad;

@@ -1,6 +1,7 @@
 ﻿using ClubDeportivo.Datos;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,6 +50,10 @@ namespace ClubDeportivo.Entidades
         }
 
         public bool ActualizarCuota() { return true; }
-        public DateTime CalcularVencimiento() { return FechaVencimiento; }
+        public static DataTable ListarVencimientos()
+        {
+            CuotaDAO dao = new CuotaDAO();
+            return dao.ListarVencimientos();
+        }
     }
 }

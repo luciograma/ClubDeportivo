@@ -1,12 +1,7 @@
 ﻿using ClubDeportivo.Entidades;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClubDeportivo.Datos
 {
@@ -46,5 +41,31 @@ namespace ClubDeportivo.Datos
 
             return salida;
         }
+
+        public DataTable ListarVencimientos()
+        {
+            DataTable tabla = new DataTable();
+            MySqlConnection sqlCon = new MySqlConnection();
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                MySqlCommand comando = new MySqlCommand("ListarVencimientosDelDia", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
+                sqlCon.Open();
+                MySqlDataReader resultado = comando.ExecuteReader();
+                tabla.Load(resultado);
+                return tabla;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al listar vencimientos: " + ex.Message);
+            }
+            finally
+            {
+                if (sqlCon.State == ConnectionState.Open) sqlCon.Close();
+            }
+        }
+
+
     }
 }
