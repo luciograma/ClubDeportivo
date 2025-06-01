@@ -43,7 +43,7 @@ namespace ClubDeportivo.Datos
             return salida;
         }
 
-        public Socio ObtenerSocioPorId(int idSocio)
+        public Socio ObtenerSocioPorId(int idSocio) 
         {
             Socio socio = null;
 

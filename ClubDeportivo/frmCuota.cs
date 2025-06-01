@@ -78,12 +78,17 @@ namespace ClubDeportivo
             }
 
             // Buscar socio
-            Socio socio = new SocioDAO().ObtenerSocioPorId(nroSocio);
-            if (socio == null)
+            Socio socio = null;
+            try
+            {
+                socio = new SocioDAO().ObtenerSocioPorId(nroSocio);
+            }
+            catch (Exception ex) 
             {
                 MostrarError("No existe ese Nro. de Socio, por favor ingrese uno correcto.");
                 return;
             }
+
 
             // Crear cuota
             Cuota cuota = new Cuota

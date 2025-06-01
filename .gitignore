@@ -1,3 +1,45 @@
+# Archivos y carpetas de Visual Studio
 .vs/
+*.user
+*.suo
+
+# Resultados de compilación
 bin/
 obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Configuración de NuGet
+*.nupkg
+*.nuspec
+project.lock.json
+project.assets.json
+project.nuget.cache
+*.nuget.props
+*.nuget.dgspec.json
+
+# Archivos temporales de MSBuild
+*.csproj.FileListAbsolute.txt
+*.csproj.GenerateResource.cache
+*.AssemblyInfoInputs.cache
+*.AssemblyInfo.cs
+
+# Configuración local de diseño
+*.designer.runtimeconfig.json
+*.runtimeconfig.json
+*.genruntimeconfig.cache
+
+# Rider y VS Code
+.idea/
+.vscode/
+
+# Otros archivos temporales comunes
+*.dbmdl
+*.bak
+*.tmp
+*.swp
+*.sln.docstates
+_ReSharper._
