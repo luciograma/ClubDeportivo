@@ -43,7 +43,24 @@ namespace ClubDeportivo.Datos
             return salida;
         }
 
-        public Socio ObtenerSocioPorId(int idSocio)
+        public void EliminarSocio(int idSocio)
+        {
+            using var sqlCon = Conexion.getInstancia().CrearConexion();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand("EliminarSocio", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
+                comando.Parameters.AddWithValue("p_idSocio", idSocio);
+                sqlCon.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar socio: " + ex.Message);
+            }
+        }
+
+        public Socio ObtenerSocioPorId(long idSocio)
         {
             Socio socio = null;
 

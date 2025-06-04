@@ -205,6 +205,17 @@ BEGIN
 END //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE EliminarSocio(
+    IN p_idSocio INT
+)
+BEGIN
+    DELETE FROM cuota WHERE idSocio = p_idSocio;
+    DELETE FROM socio WHERE idSocio = p_idSocio;
+END //
+DELIMITER ;
+
+
 -- select * from nosocio;
 -- select * from socio;
 -- select * from cuota; 

@@ -1,14 +1,5 @@
-﻿using ClubDeportivo.Entidades;
-using MySqlX.XDevAPI;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ClubDeportivo.Datos;
+using ClubDeportivo.Entidades;
 
 namespace ClubDeportivo
 {
@@ -56,64 +47,88 @@ namespace ClubDeportivo
                 MessageBox.Show("Debe completar datos requeridos (*) ",
                 "AVISO DEL SISTEMA", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            if (!int.TryParse(txtDNI.Text, out int dni))
             {
-                string respuesta = "";
-                bool esnumero = false;
+                MessageBox.Show("El DNI debe ser numérico.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                if (checkSocio.Checked)
+            string respuesta = "";
+
+            if (checkSocio.Checked)
+            {
+                // Instancio Socio
+                Socio socio = new Socio();
+                socio.Nombre = txtNombre.Text;
+                socio.Apellido = txtApellido.Text;
+                socio.Dni = Convert.ToInt32(txtDNI.Text);
+                socio.Email = txtEmail.Text;
+
+                string resultado = socio.RegistrarCliente();
+                if (int.TryParse(resultado, out int idSocio) && idSocio > 0)
                 {
-                    // Instancio Socio
-                    Socio socio = new Socio();
-                    socio.Nombre = txtNombre.Text;
-                    socio.Apellido = txtApellido.Text;
-                    socio.Dni = Convert.ToInt32(txtDNI.Text);
-                    socio.Email = txtEmail.Text;
+                    socio.IdSocio = idSocio;
 
-                    Datos.SocioDAO socioDatos = new Datos.SocioDAO();
-                    respuesta = socio.RegistrarCliente();
-                }
-                else
-                {
-                    // Instancio NoSocioDAO
-                    NoSocio noSocio = new NoSocio();
-                    noSocio.Nombre = txtNombre.Text;
-                    noSocio.Apellido = txtApellido.Text;
-                    noSocio.Dni = Convert.ToInt32(txtDNI.Text);
-                    noSocio.Email = txtEmail.Text;
+                    // Registrado el socio disparo el formulario de pago de Cuota (si la cuota no se persiste, se elimina el socio para evitar el registro de un socio que no abonó su cuota)
+                    frmCuota formCuota = new frmCuota(socio);
+                    var dialogResult = formCuota.ShowDialog();
 
-                    Datos.NoSocioDAO noSocioDatos = new Datos.NoSocioDAO();
-                    respuesta = noSocio.RegistrarCliente();
-                }
-
-                esnumero = int.TryParse(respuesta, out int codigo);
-
-                if (esnumero)
-                {
-                    if (codigo == -1)
+                    if (dialogResult == DialogResult.OK && formCuota.PagoRegistrado)
                     {
-                        MessageBox.Show("EL CLIENTE YA EXISTE", "AVISO DEL SISTEMA",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
+                        MessageBox.Show("Cliente y cuota registrados con éxito.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                        return;
                     }
                     else
                     {
-                        MessageBox.Show("Se almacenó con éxito con el código Nro " + respuesta,
-                        "AVISO DEL SISTEMA",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                        this.Hide();
+                        new SocioDAO().EliminarSocio(idSocio);
+                        MessageBox.Show("No se completó el pago. El cliente no fue registrado.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
                     }
                 }
                 else
                 {
-                    // Por si la respuesta no es número, podés mostrar mensaje de error
-                    MessageBox.Show("Error al almacenar el cliente: " + respuesta,
-                    "AVISO DEL SISTEMA",
+                    respuesta = resultado; // ✅ para que se analice correctamente más abajo
+                }
+            }
+            else
+            {
+                // Instancio NoSocioDAO
+                NoSocio noSocio = new NoSocio();
+                noSocio.Nombre = txtNombre.Text;
+                noSocio.Apellido = txtApellido.Text;
+                noSocio.Dni = Convert.ToInt32(txtDNI.Text);
+                noSocio.Email = txtEmail.Text;
+
+                respuesta = noSocio.RegistrarCliente();
+            }
+
+            if (int.TryParse(respuesta, out int codigo))
+            {
+                if (codigo == -1)
+                {
+                    MessageBox.Show("EL CLIENTE YA EXISTE", "AVISO DEL SISTEMA",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
+                else
+                {
+                    MessageBox.Show("Se almacenó con éxito con el código Nro " + respuesta,
+                    "AVISO DEL SISTEMA",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error al almacenar el cliente: " + respuesta,
+                "AVISO DEL SISTEMA",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
             }
         }
 

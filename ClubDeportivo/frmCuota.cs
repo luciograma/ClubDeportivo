@@ -1,28 +1,35 @@
 ﻿using ClubDeportivo.Datos;
 using ClubDeportivo.Entidades;
-using Org.BouncyCastle.Pkcs;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ClubDeportivo
 {
     public partial class frmCuota : Form
     {
+
+        private Socio? socio;
+        public bool PagoRegistrado { get; private set; } = false;
+
+
         public frmCuota()
         {
             InitializeComponent();
         }
 
+        public frmCuota(Socio socio)
+        {
+            InitializeComponent();
+            this.socio = socio;
+        }
+
         private void formCuota_Load(object sender, EventArgs e)
         {
+            if (socio != null)
+            {
+                txtNroSocio.Text = socio.IdSocio.ToString();
+                txtNroSocio.Enabled = false;
+                lblNroSocio.Visible = false;
+            }
+
             selectMDPago_SelectedIndexChanged(null, null);
         }
 
@@ -52,7 +59,13 @@ namespace ClubDeportivo
                 return;
 
             // Validación de número de socio
-            if (!int.TryParse(txtNroSocio.Text, out int nroSocio))
+            long idSocio;
+
+            if (this.socio != null)
+            {
+                idSocio = this.socio.IdSocio;
+            }
+            else if (!long.TryParse(txtNroSocio.Text, out idSocio))
             {
                 MostrarError("Ingrese un número de socio válido.");
                 return;
@@ -68,25 +81,34 @@ namespace ClubDeportivo
             // Determinar si el medio de pago es tarjeta y validar cuotas
             int cuotas = 0;
             bool esTarjeta = selectMDPago.Text.Equals("Tarjeta de Credito", StringComparison.OrdinalIgnoreCase);
-            if (esTarjeta)
+            if (esTarjeta && !int.TryParse(txtCantCuotas.Text, out cuotas))
             {
-                if (!int.TryParse(txtCantCuotas.Text, out cuotas))
-                {
-                    MostrarError("Ingrese una cantidad de cuotas válida.");
-                    return;
-                }
+                MostrarError("Ingrese una cantidad de cuotas válida.");
+                return;
             }
 
             // Buscar socio
-            Socio socio = null;
-            try
+            Socio socio;
+            if (this.socio == null)
             {
-                socio = new SocioDAO().ObtenerSocioPorId(nroSocio);
+                try
+                {
+                    socio = new SocioDAO().ObtenerSocioPorId(idSocio);
+                    if (socio == null)
+                    {
+                        MostrarError("No existe ese Nro. de Socio, por favor ingrese uno correcto.");
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MostrarError("Error al buscar socio: " + ex.Message);
+                    return;
+                }
             }
-            catch (Exception ex) 
+            else
             {
-                MostrarError("No existe ese Nro. de Socio, por favor ingrese uno correcto.");
-                return;
+                socio = this.socio;
             }
 
 
@@ -104,13 +126,14 @@ namespace ClubDeportivo
             bool resultado = cuota.RegistrarCuota();
             if (resultado)
             {
-                MessageBox.Show("Se almacenó con éxito la cuota.", "AVISO DEL SISTEMA",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
+                this.PagoRegistrado = true;
+                MessageBox.Show("Se almacenó con éxito la cuota.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
-                MostrarError("Hubo un error al registrar el pago: " + resultado);
+                MostrarError("Hubo un error al registrar el pago.");
             }
         }
 

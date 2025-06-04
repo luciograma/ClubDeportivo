@@ -35,23 +35,6 @@ namespace ClubDeportivo.Entidades
             SocioDAO dao = new SocioDAO();
             string resultado = dao.Alta_Socio(this);
 
-            if (int.TryParse(resultado, out int idGenerado) && idGenerado > 0)
-            {
-                this.IdSocio = idGenerado;
-
-                //Dejo registro de la cuota abonada por el socio
-                Cuota cuotaInicial = new Cuota
-                {
-                    Socio = this,
-                    FechaVencimiento = DateTime.Now.AddMonths(1),
-                    Monto = 10000,
-                    MedioPago = "efectivo",
-                    CuotasTarjeta = 0
-                };
-
-                cuotaInicial.RegistrarCuota();
-            }
-
             return resultado;
         }
 
