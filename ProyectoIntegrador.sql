@@ -194,16 +194,16 @@ BEGIN
 END //
 DELIMITER ;
 
+
 DELIMITER //
 CREATE PROCEDURE ListarVencimientosDelDia()
 BEGIN
     SELECT s.idSocio, s.nombre, s.apellido, s.dni, c.fechaVencimiento, c.valorCuota
-    FROM socio scuotacuotacuota
+    FROM socio s
     JOIN cuota c ON s.idSocio = c.idSocio
-    WHERE c.fechaVencimiento = CURDATE();
+    WHERE c.fechaVencimiento < CURDATE();
 END //
 DELIMITER ;
-
 
 -- select * from nosocio;
 -- select * from socio;
@@ -215,6 +215,6 @@ DELIMITER ;
 -- select s.*, c.fechaVencimiento from socio s join cuota c on s.idSocio = c.idSocio;
 
 -- Query para editar fechaVencimiento de cuota para probar ListarVencimientos
---UPDATE proyecto.cuota
---SET fechaVencimiento = DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
---WHERE idCuota = 1;
+-- UPDATE proyecto.cuota
+-- SET fechaVencimiento = DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+-- WHERE idCuota = 1;
