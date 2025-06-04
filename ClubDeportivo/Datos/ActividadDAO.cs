@@ -23,7 +23,7 @@ namespace ClubDeportivo.Datos
                         {
                             Actividad actividad = new Actividad()
                             {
-                                Id = reader.GetInt32("actividadId"),
+                                Id = reader.GetInt32("idActividad"),
                                 Nombre = reader.GetString("nombre"),
                                 Precio = reader.GetDouble("precio"),
                                 Cupo = reader.GetInt32("cupo")
