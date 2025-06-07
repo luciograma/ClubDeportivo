@@ -14,7 +14,8 @@ CREATE TABLE socio(
 	apellido varchar (20),
 	dni int,
 	email varchar(40),
-	fechaEmisionCarnet datetime
+	fechaEmisionCarnet datetime,
+    fechaAptoFisico datetime
 );
 
 CREATE TABLE noSocio(
@@ -94,6 +95,7 @@ CREATE PROCEDURE AltaSocio(
     IN apellido VARCHAR(20),
     IN dni INT,
     IN email VARCHAR(100),
+    IN fechaAptoFisico datetime,
     OUT rta INT
 )
 BEGIN
@@ -102,8 +104,8 @@ BEGIN
     SELECT COUNT(*) INTO existe FROM socio WHERE socio.dni = dni;
 
     IF existe = 0 THEN
-        INSERT INTO socio (nombre, apellido, dni, email, fechaEmisionCarnet)
-        VALUES (nombre, apellido, dni, email, NOW());
+        INSERT INTO socio (nombre, apellido, dni, email, fechaEmisionCarnet, fechaAptoFisico)
+        VALUES (nombre, apellido, dni, email, NOW(), fechaAptoFisico);
         SET rta = LAST_INSERT_ID();
     ELSE
         SET rta = -1;
@@ -217,7 +219,7 @@ DELIMITER ;
 
 
 -- select * from nosocio;
--- select * from socio;
+ select * from socio;
 -- select * from cuota; 
 -- select * from actividad;
 -- select * from nosocio_actividad;

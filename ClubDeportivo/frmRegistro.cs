@@ -10,6 +10,12 @@ namespace ClubDeportivo
             InitializeComponent();
         }
 
+        private void frmRegistro_Load(object sender, EventArgs e)
+        {
+            dateTimeApFisico.Enabled = checkSocio.Checked;
+            lblSocioAptoFisico.Visible = checkSocio.Checked;
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -25,19 +31,9 @@ namespace ClubDeportivo
 
         }
 
-        private void frmRegistro_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -66,6 +62,7 @@ namespace ClubDeportivo
                 socio.Apellido = txtApellido.Text;
                 socio.Dni = Convert.ToInt32(txtDNI.Text);
                 socio.Email = txtEmail.Text;
+                socio.FechaAptoFisico = dateTimeApFisico.Value;
 
                 string resultado = socio.RegistrarCliente();
                 if (int.TryParse(resultado, out int idSocio) && idSocio > 0)
@@ -129,6 +126,31 @@ namespace ClubDeportivo
                 "AVISO DEL SISTEMA",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+            }
+        }
+
+        private void label1_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkSocio_CheckedChanged(object sender, EventArgs e)
+        {
+            dateTimeApFisico.Enabled = checkSocio.Checked;
+            lblSocioAptoFisico.Visible = checkSocio.Checked;
+        }
+
+        private void dateTimeApFisico_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dateTimeApFisico.Value;
+            DateTime hoy = DateTime.Today;
+
+            // Si la fecha seleccionada es anterior a hoy - 1 año
+            if (fechaSeleccionada < hoy.AddYears(-1))
+            {
+                MessageBox.Show("La fecha debe ser menor a un año de antigüedad.", "Fecha no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Opcional: volver a poner la fecha de hoy
+                dateTimeApFisico.Value = hoy;
             }
         }
 

@@ -20,6 +20,7 @@ namespace ClubDeportivo.Datos
                 comando.Parameters.Add("dni", MySqlDbType.Int32).Value = socio.Dni;
                 comando.Parameters.Add("email", MySqlDbType.VarChar).Value = socio.Email;
                 comando.Parameters.Add("fechaEmisionCarnet", MySqlDbType.DateTime).Value = socio.FechaEmisionCarnet;
+                comando.Parameters.Add("fechaAptoFisico", MySqlDbType.DateTime).Value = socio.FechaAptoFisico;
                 MySqlParameter ParCodigo = new MySqlParameter();
                 ParCodigo.ParameterName = "rta";
                 ParCodigo.MySqlDbType = MySqlDbType.Int32;
@@ -86,7 +87,8 @@ namespace ClubDeportivo.Datos
                                     Apellido = reader.GetString("apellido"),
                                     Dni = reader.GetInt32("dni"),
                                     Email = reader.GetString("email"),
-                                    FechaEmisionCarnet = reader.GetDateTime("fechaEmisionCarnet")
+                                    FechaEmisionCarnet = reader.GetDateTime("fechaEmisionCarnet"),
+                                    FechaAptoFisico = reader.GetDateTime("fechaAptoFisico")
                                 };
                             }
                         }
