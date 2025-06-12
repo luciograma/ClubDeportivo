@@ -17,11 +17,43 @@ namespace ClubDeportivo.Datos
         private static Conexion? con = null;
 
         private Conexion(){
+
+            bool correcto = false;
+            int mensaje;
+
+            //variables para recibir datos desde el teclado
+            //============================
+            string T_servidor = "Servidor";
+            string T_puerto = "Puerto";
+            string T_usuario = "Usuario";
+            string T_clave = "Clave";
+
+            while (correcto != true)
+            {
+                T_servidor = Microsoft.VisualBasic.Interaction.InputBox("Ingrese servidor", "BASE DE DATOS INSTALACIÓN MySQL");
+                T_puerto = Microsoft.VisualBasic.Interaction.InputBox("Ingrese puerto", "BASE DE DATOS INSTALACIÓN MySQL");
+                T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese usuario", "BASE DE DATOS INSTALACIÓN MySQL");
+                T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese clave", "BASE DE DATOS INSTALACIÓN MySQL");
+
+                mensaje = (int)MessageBox.Show("Su ingreso: SERVIDOR = " + T_servidor + "PUERTO = " + T_puerto + "USUARIO = " + T_usuario +
+                            "CLAVE = " + T_clave, "AVISO DEL SISTEMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (mensaje != 6) // correspnde al SI
+                {
+                    MessageBox.Show("INGRESE NUEVAMENTE LOS DATOS");
+                    correcto = false;
+                }
+                else
+                {
+                    correcto = true;
+                }
+            }
+
             this.baseDatos = "Proyecto";
-            this.servidor = "localhost";
-            this.puerto = "3306";
-            this.usuario = "root";
-            this.clave = "";
+            this.servidor = T_servidor;
+            this.puerto = T_puerto;
+            this.usuario = T_usuario;
+            this.clave = T_clave;
         }
 
         public MySqlConnection CrearConexion()

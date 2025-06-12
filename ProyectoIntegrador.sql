@@ -15,7 +15,7 @@ CREATE TABLE socio(
 	dni int,
 	email varchar(40),
 	fechaEmisionCarnet datetime,
-    fechaAptoFisico datetime
+    fechaAptoFisico datetime null
 );
 
 CREATE TABLE noSocio(
@@ -190,7 +190,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE ObtenerSocioPorId(IN p_idSocio INT)
 BEGIN
-    SELECT idSocio, nombre, apellido, dni, email, fechaEmisionCarnet
+    SELECT idSocio, nombre, apellido, dni, email, fechaEmisionCarnet, fechaAptoFisico
     FROM Socio
     WHERE idSocio = p_idSocio;
 END //
@@ -219,7 +219,7 @@ DELIMITER ;
 
 
 -- select * from nosocio;
- select * from socio;
+-- select * from socio;
 -- select * from cuota; 
 -- select * from actividad;
 -- select * from nosocio_actividad;
