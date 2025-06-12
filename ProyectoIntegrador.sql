@@ -218,7 +218,7 @@ END //
 DELIMITER ;
 
 
--- select * from nosocio;
+ -- select * from nosocio;
 -- select * from socio;
 -- select * from cuota; 
 -- select * from actividad;
