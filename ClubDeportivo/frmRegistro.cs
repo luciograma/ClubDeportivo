@@ -21,16 +21,6 @@ namespace ClubDeportivo
 
         }
 
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -127,11 +117,6 @@ namespace ClubDeportivo
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
             }
-        }
-
-        private void label1_Click_2(object sender, EventArgs e)
-        {
-
         }
 
         private void checkSocio_CheckedChanged(object sender, EventArgs e)

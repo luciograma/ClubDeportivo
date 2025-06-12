@@ -1,12 +1,4 @@
 ﻿using ClubDeportivo.Datos;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace ClubDeportivo.Entidades
 {
@@ -40,19 +32,17 @@ namespace ClubDeportivo.Entidades
             return resultado;
         }
 
-        public bool BajaSocio() {
+        public bool BajaSocio()
+        {
             return true;
         }
 
-        public void EmitirCarnet() {
+        public void EmitirCarnet()
+        {
             this.FechaEmisionCarnet = DateTime.Now; ;
         }
-
-        public bool AbonarCuota() {
-            return true; 
-        }
-
-        public override string ToString() {
+        public override string ToString()
+        {
             return "[nroSocio: " + idSocio + ", fechaEmisionCarnet: " + fechaEmisionCarnet + "]";
         }
     }

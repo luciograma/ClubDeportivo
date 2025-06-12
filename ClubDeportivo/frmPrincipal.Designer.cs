@@ -124,7 +124,6 @@
             lblTitulo.Size = new Size(269, 41);
             lblTitulo.TabIndex = 6;
             lblTitulo.Text = "CLUB DEPORTIVO";
-            lblTitulo.Click += label1_Click;
             // 
             // pictureBox1
             // 

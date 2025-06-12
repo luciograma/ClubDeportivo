@@ -1,10 +1,5 @@
 ﻿using ClubDeportivo.Datos;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
@@ -18,7 +13,7 @@ namespace ClubDeportivo.Entidades
         private int cuotasTarjeta;
 
         public Cuota() { }
-        public Cuota(long id,  Socio socio, DateTime fechaVencimiento, double monto, string medioPago, int cuotasTarjeta)
+        public Cuota(long id, Socio socio, DateTime fechaVencimiento, double monto, string medioPago, int cuotasTarjeta)
         {
             Id = id;
             Socio = socio;
@@ -38,7 +33,7 @@ namespace ClubDeportivo.Entidades
         {
             CuotaDAO dao = new CuotaDAO();
             string resultado = dao.RegistrarCuota(this);
-            
+
             if (resultado == "OK")
                 return true;
             else
@@ -48,8 +43,6 @@ namespace ClubDeportivo.Entidades
                 return false;
             }
         }
-
-        public bool ActualizarCuota() { return true; }
         public static DataTable ListarVencimientos()
         {
             CuotaDAO dao = new CuotaDAO();

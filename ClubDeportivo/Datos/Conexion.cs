@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 
 namespace ClubDeportivo.Datos
 {
@@ -16,7 +11,8 @@ namespace ClubDeportivo.Datos
         private string clave;
         private static Conexion? con = null;
 
-        private Conexion(){
+        private Conexion()
+        {
 
             bool correcto = false;
             int mensaje;
@@ -35,8 +31,10 @@ namespace ClubDeportivo.Datos
                 T_usuario = Microsoft.VisualBasic.Interaction.InputBox("Ingrese usuario", "BASE DE DATOS INSTALACIÓN MySQL");
                 T_clave = Microsoft.VisualBasic.Interaction.InputBox("Ingrese clave", "BASE DE DATOS INSTALACIÓN MySQL");
 
-                mensaje = (int)MessageBox.Show("Su ingreso: SERVIDOR = " + T_servidor + "PUERTO = " + T_puerto + "USUARIO = " + T_usuario +
-                            "CLAVE = " + T_clave, "AVISO DEL SISTEMA", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                mensaje = (int)MessageBox.Show("Su ingreso: SERVIDOR = " + T_servidor + " - PUERTO = "
+                                                + T_puerto + " - USUARIO = " + T_usuario +
+                                                " - CLAVE = " + T_clave, "AVISO DEL SISTEMA",
+                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (mensaje != 6) // correspnde al SI
                 {

@@ -1,12 +1,7 @@
 ﻿using ClubDeportivo.Entidades;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClubDeportivo.Datos
 {
@@ -33,7 +28,7 @@ namespace ClubDeportivo.Datos
                 comando.ExecuteNonQuery();
                 salida = "OK";
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 if (e.Number == 1062) // Ya existe la inscripción para el cliente
                 {

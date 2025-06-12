@@ -1,9 +1,4 @@
 ﻿using ClubDeportivo.Datos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
@@ -36,11 +31,5 @@ namespace ClubDeportivo.Entidades
         {
             return new ActividadDAO().GetActividadesLista();
         }
-        public bool CrearActividad()
-        { return true; }
-        public bool ActualizarActividad()
-        { return true; }
-        public bool VerificarCupo()
-        { return true; }
     }
 }

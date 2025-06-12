@@ -130,7 +130,6 @@
             txtTitulo.Size = new Size(236, 38);
             txtTitulo.TabIndex = 11;
             txtTitulo.Text = "PAGO DE CUOTA";
-            txtTitulo.Click += txtTitulo_Click;
             // 
             // picPagar
             // 
@@ -180,7 +179,6 @@
             lblCampos.Size = new Size(152, 20);
             lblCampos.TabIndex = 15;
             lblCampos.Text = "* Sólo si eligió tarjeta";
-            lblCampos.Click += lblCampos_Click;
             // 
             // frmCuota
             // 

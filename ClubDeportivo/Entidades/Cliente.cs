@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClubDeportivo.Entidades
+﻿namespace ClubDeportivo.Entidades
 {
     public abstract class Cliente
     {
@@ -18,7 +12,7 @@ namespace ClubDeportivo.Entidades
         {
             Nombre = nombre;
             Apellido = apellido;
-            Dni = dni;          
+            Dni = dni;
             Email = email;
         }
 

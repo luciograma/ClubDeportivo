@@ -34,24 +34,9 @@ namespace ClubDeportivo
             selectMDPago_SelectedIndexChanged(null, null);
         }
 
-        private void txtTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPagar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void lblCampos_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnPagarCuota_Click(object sender, EventArgs e)
